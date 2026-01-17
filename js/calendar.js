@@ -6,6 +6,7 @@ let selectedDate = null;
 let selectedTime = null;
 let currentMonth = new Date().getMonth();
 let currentYear = new Date().getFullYear();
+let currentStep = 1;
 
 // Minimum days in advance for orders (production time)
 const MIN_LEAD_DAYS = 2;
@@ -31,6 +32,26 @@ const MONTH_NAMES = [
 
 // Polish day names
 const DAY_NAMES = ["Nd", "Pn", "Wt", "Śr", "Cz", "Pt", "So"];
+
+// ========== STEP NAVIGATION ==========
+function goToStep(step) {
+    currentStep = step;
+    showStep(step);
+}
+
+function showStep(step) {
+    // Hide all steps
+    for (let i = 1; i <= 4; i++) {
+        const stepEl = document.getElementById(`step${i}`);
+        if (stepEl) stepEl.style.display = "none";
+    }
+
+    // Show current step
+    const currentStepEl = document.getElementById(`step${step}`);
+    if (currentStepEl) currentStepEl.style.display = "block";
+}
+
+// ========== CALENDAR FUNCTIONS ==========
 
 // Initialize calendar
 function initCalendar() {

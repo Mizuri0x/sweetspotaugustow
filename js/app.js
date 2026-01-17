@@ -32,9 +32,7 @@ const CONFIG = {
     }
 };
 
-// ========== ORDER MODAL STEPS ==========
-let currentStep = 1;
-
+// ========== ORDER MODAL ==========
 function openOrderModal() {
     const modal = document.getElementById("orderModal");
     modal.classList.add("active");
@@ -46,7 +44,7 @@ function openOrderModal() {
     cartSidebar.classList.remove("active");
     cartOverlay.classList.remove("active");
 
-    // Initialize calendar
+    // Initialize calendar and show step 1
     currentStep = 1;
     initCalendar();
     showStep(1);
@@ -61,23 +59,6 @@ function closeOrderModal() {
     resetBooking();
     currentStep = 1;
     showStep(1);
-}
-
-function goToStep(step) {
-    currentStep = step;
-    showStep(step);
-}
-
-function showStep(step) {
-    // Hide all steps
-    for (let i = 1; i <= 4; i++) {
-        const stepEl = document.getElementById(`step${i}`);
-        if (stepEl) stepEl.style.display = "none";
-    }
-
-    // Show current step
-    const currentStepEl = document.getElementById(`step${step}`);
-    if (currentStepEl) currentStepEl.style.display = "block";
 }
 
 // ========== ORDER FORM SUBMISSION ==========
@@ -168,8 +149,7 @@ async function sendOrderNotification(order) {
 }
 
 function formatOrderMessage(order) {
-    const items = order.items.map(i => `• ${i.quantity}x ${i.name} (${i.subtotal} PLN)`).join("
-");
+    const items = order.items.map(i => `• ${i.quantity}x ${i.name} (${i.subtotal} PLN)`).join("\n");
 
     return `🧁 NOWE ZAMÓWIENIE!
 
@@ -214,8 +194,6 @@ async function sendTelegramNotification(message) {
 
 // SMS notification (via backend proxy)
 async function sendSMSNotification(message) {
-    // This would typically go through your backend
-    // Direct SMSAPI calls require server-side implementation
     console.log("📱 SMS would be sent:", message);
 }
 
