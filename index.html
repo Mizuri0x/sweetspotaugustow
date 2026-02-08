@@ -4,14 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sweet Spot Augustów | Monoporcje & Słodkości</title>
+    <meta name="description" content="Autorskie monoporcje, tartaletki i desery tworzone z pasją w Augustowie. Zamów online!">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+    <!-- Animated Background -->
+    <div class="animated-bg"></div>
+
     <!-- Navigation -->
-    <nav class="navbar">
+    <nav class="navbar" id="navbar">
         <div class="nav-container">
             <a href="#" class="logo">
                 <span class="logo-icon">🧁</span>
@@ -37,27 +41,42 @@
     <!-- Hero Section -->
     <section id="home" class="hero">
         <div class="hero-content">
-            <h1 class="hero-title">Małe dzieła sztuki<br><span class="highlight">cukierniczej</span></h1>
+            <h1 class="hero-title">
+                Małe dzieła sztuki
+                <span class="highlight">cukierniczej</span>
+            </h1>
             <p class="hero-subtitle">Autorskie monoporcje, tartaletki i desery tworzone z pasją w Augustowie</p>
-            <a href="#products" class="btn btn-primary">Zobacz ofertę</a>
+            <a href="#products" class="btn btn-primary">
+                <span>Zobacz ofertę</span>
+            </a>
         </div>
+
+        <!-- Floating Decorations -->
         <div class="hero-decoration">
             <div class="floating-shape shape-1"></div>
             <div class="floating-shape shape-2"></div>
             <div class="floating-shape shape-3"></div>
         </div>
+
+        <!-- Floating Emojis -->
+        <div class="floating-emoji emoji-1">🧁</div>
+        <div class="floating-emoji emoji-2">🍰</div>
+        <div class="floating-emoji emoji-3">🍓</div>
+        <div class="floating-emoji emoji-4">🎂</div>
+        <div class="floating-emoji emoji-5">🍫</div>
+        <div class="floating-emoji emoji-6">✨</div>
     </section>
 
     <!-- Categories -->
     <section class="categories">
         <div class="container">
             <div class="category-pills">
-                <button class="category-pill active" data-category="all">Wszystko</button>
-                <button class="category-pill" data-category="monoporcje">Monoporcje</button>
-                <button class="category-pill" data-category="tartaletki">Tartaletki</button>
-                <button class="category-pill" data-category="cheesecake">Cheesecake Sticks</button>
-                <button class="category-pill" data-category="ciasta">Ciasta</button>
-                <button class="category-pill" data-category="sezonowe">Sezonowe 🌸</button>
+                <button class="category-pill active" data-category="all"><span>Wszystko</span></button>
+                <button class="category-pill" data-category="monoporcje"><span>Monoporcje</span></button>
+                <button class="category-pill" data-category="tartaletki"><span>Tartaletki</span></button>
+                <button class="category-pill" data-category="cheesecake"><span>Cheesecake Sticks</span></button>
+                <button class="category-pill" data-category="ciasta"><span>Ciasta</span></button>
+                <button class="category-pill" data-category="sezonowe"><span>Sezonowe 🌸</span></button>
             </div>
         </div>
     </section>
@@ -65,8 +84,8 @@
     <!-- Products Section -->
     <section id="products" class="products">
         <div class="container">
-            <h2 class="section-title">Nasza Oferta</h2>
-            <p class="section-subtitle">Każdy deser to starannie skomponowana kompozycja smaków</p>
+            <h2 class="section-title fade-in">Nasza Oferta</h2>
+            <p class="section-subtitle fade-in">Każdy deser to starannie skomponowana kompozycja smaków</p>
 
             <div class="products-grid" id="productsGrid">
                 <!-- Products will be loaded by JavaScript -->
@@ -78,7 +97,7 @@
     <section id="about" class="about">
         <div class="container">
             <div class="about-content">
-                <div class="about-text">
+                <div class="about-text fade-in">
                     <h2 class="section-title">O Sweet Spot</h2>
                     <p>Tworzymy autorskie desery z najwyższej jakości składników. Każda monoporcja to małe dzieło sztuki cukierniczej, stworzone z pasją i dbałością o każdy detal.</p>
                     <p>Nasze produkty są przygotowywane na zamówienie, dzięki czemu masz pewność świeżości i najwyższej jakości.</p>
@@ -97,7 +116,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="about-image">
+                <div class="about-image fade-in">
                     <div class="image-placeholder">
                         <span>🎂</span>
                         <p>Twoje zdjęcie tutaj</p>
@@ -110,9 +129,9 @@
     <!-- Contact Section -->
     <section id="contact" class="contact">
         <div class="container">
-            <h2 class="section-title">Kontakt</h2>
+            <h2 class="section-title fade-in">Kontakt</h2>
             <div class="contact-grid">
-                <div class="contact-info">
+                <div class="contact-info fade-in">
                     <div class="contact-item">
                         <span class="contact-icon">📍</span>
                         <div>
@@ -135,7 +154,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="contact-hours">
+                <div class="contact-hours fade-in">
                     <h3>Godziny odbioru</h3>
                     <ul>
                         <li><span>Pon - Pt:</span> <span>10:00 - 18:00</span></li>
@@ -148,125 +167,176 @@
     </section>
 
     <!-- Footer -->
-    <footer class="footer">
+    <footer>
         <div class="container">
             <div class="footer-content">
-                <div class="footer-brand">
-                    <span class="logo-icon">🧁</span>
-                    <span class="logo-text">Sweet Spot</span>
+                <div class="footer-logo">🧁 Sweet Spot Augustów</div>
+                <div class="footer-links">
+                    <a href="#home">Start</a>
+                    <a href="#products">Oferta</a>
+                    <a href="#about">O nas</a>
+                    <a href="#contact">Kontakt</a>
                 </div>
-                <p>&copy; 2026 Sweet Spot Augustów. Wszystkie prawa zastrzeżone.</p>
+                <p class="copyright">© 2026 Sweet Spot Augustów. Wszystkie prawa zastrzeżone.</p>
             </div>
         </div>
     </footer>
 
-    <!-- Shopping Cart Sidebar -->
+    <!-- Cart Sidebar -->
     <div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
-    <aside class="cart-sidebar" id="cartSidebar">
+    <div class="cart-sidebar" id="cartSidebar">
         <div class="cart-header">
-            <h3>🛒 Twój koszyk</h3>
-            <button class="close-cart" onclick="toggleCart()">✕</button>
+            <h3>🛒 Koszyk</h3>
+            <button class="cart-close" onclick="toggleCart()">✕</button>
         </div>
         <div class="cart-items" id="cartItems">
-            <!-- Cart items will be loaded here -->
+            <!-- Cart items will be loaded by JavaScript -->
         </div>
         <div class="cart-footer">
             <div class="cart-total">
                 <span>Suma:</span>
-                <span id="cartTotal">0 PLN</span>
+                <span id="cartTotal">0 zł</span>
             </div>
-            <button class="btn btn-primary btn-block" onclick="openOrderModal()" id="checkoutBtn" disabled>
-                Wybierz termin odbioru
-            </button>
+            <button class="checkout-btn" onclick="openOrderModal()">Zamów teraz ✨</button>
         </div>
-    </aside>
+    </div>
 
     <!-- Order Modal -->
     <div class="modal-overlay" id="orderModal">
         <div class="modal">
-            <button class="modal-close" onclick="closeOrderModal()">✕</button>
-            <div class="modal-content">
-                <h2>📅 Zamów z odbiorem</h2>
+            <div class="modal-header">
+                <h2>📅 Zamówienie</h2>
+                <button class="modal-close" onclick="closeOrderModal()">✕</button>
+            </div>
+            <div class="modal-body">
+                <div class="steps-indicator">
+                    <div class="step-dot active" data-step="1"></div>
+                    <div class="step-dot" data-step="2"></div>
+                    <div class="step-dot" data-step="3"></div>
+                    <div class="step-dot" data-step="4"></div>
+                </div>
 
                 <!-- Step 1: Calendar -->
                 <div class="order-step" id="step1">
-                    <h3>1. Wybierz dzień odbioru</h3>
+                    <h3 style="text-align:center; margin-bottom:1rem;">Wybierz datę odbioru</h3>
                     <div class="calendar" id="calendar"></div>
                 </div>
 
-                <!-- Step 2: Time Slot -->
-                <div class="order-step" id="step2" style="display:none">
-                    <h3>2. Wybierz godzinę odbioru</h3>
+                <!-- Step 2: Time Slots -->
+                <div class="order-step" id="step2" style="display:none;">
+                    <h3 style="text-align:center; margin-bottom:1rem;">Wybierz godzinę</h3>
                     <div class="time-slots" id="timeSlots"></div>
-                    <button class="btn btn-secondary" onclick="goToStep(1)">← Wróć</button>
                 </div>
 
-                <!-- Step 3: Contact Details -->
-                <div class="order-step" id="step3" style="display:none">
-                    <h3>3. Twoje dane</h3>
-                    <form id="orderForm">
-                        <div class="form-group">
-                            <label for="customerName">Imię i nazwisko *</label>
-                            <input type="text" id="customerName" required placeholder="Jan Kowalski">
-                        </div>
-                        <div class="form-group">
-                            <label for="customerPhone">Telefon *</label>
-                            <input type="tel" id="customerPhone" required placeholder="+48 XXX XXX XXX">
-                        </div>
-                        <div class="form-group">
-                            <label for="customerEmail">Email (opcjonalnie)</label>
-                            <input type="email" id="customerEmail" placeholder="email@example.com">
-                        </div>
-                        <div class="form-group">
-                            <label for="customerNotes">Uwagi do zamówienia</label>
-                            <textarea id="customerNotes" placeholder="Np. alergie, preferencje..."></textarea>
-                        </div>
-
-                        <!-- Payment Option -->
-                        <div class="payment-section">
-                            <h4>💳 Płatność</h4>
-                            <div class="payment-options">
-                                <label class="payment-option">
-                                    <input type="radio" name="payment" value="prepay" checked>
-                                    <span class="payment-card">
-                                        <span class="payment-icon">💳</span>
-                                        <span class="payment-label">Płatność online</span>
-                                        <span class="payment-desc">BLIK / karta / przelew</span>
-                                    </span>
-                                </label>
-                                <label class="payment-option">
-                                    <input type="radio" name="payment" value="deposit">
-                                    <span class="payment-card">
-                                        <span class="payment-icon">🔒</span>
-                                        <span class="payment-label">Zaliczka 30%</span>
-                                        <span class="payment-desc">Reszta przy odbiorze</span>
-                                    </span>
-                                </label>
-                            </div>
-                        </div>
-
-                        <button class="btn btn-secondary" type="button" onclick="goToStep(2)">← Wróć</button>
-                        <button class="btn btn-primary" type="submit">Zamawiam</button>
-                    </form>
+                <!-- Step 3: Customer Info -->
+                <div class="order-step" id="step3" style="display:none;">
+                    <h3 style="text-align:center; margin-bottom:1rem;">Twoje dane</h3>
+                    <div class="form-group">
+                        <label for="customerName">Imię i nazwisko</label>
+                        <input type="text" id="customerName" placeholder="Jan Kowalski" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="customerPhone">Telefon</label>
+                        <input type="tel" id="customerPhone" placeholder="+48 123 456 789" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="customerEmail">Email (opcjonalnie)</label>
+                        <input type="email" id="customerEmail" placeholder="jan@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="customerNotes">Uwagi do zamówienia</label>
+                        <textarea id="customerNotes" rows="3" placeholder="Np. dedykacja, alergie..."></textarea>
+                    </div>
                 </div>
 
                 <!-- Step 4: Confirmation -->
-                <div class="order-step" id="step4" style="display:none">
-                    <div class="order-success">
-                        <span class="success-icon">✅</span>
-                        <h3>Dziękujemy za zamówienie!</h3>
-                        <p>Potwierdzenie zostało wysłane na podany numer telefonu.</p>
-                        <div class="order-summary" id="orderSummary"></div>
-                        <button class="btn btn-primary" onclick="closeOrderModal()">Zamknij</button>
+                <div class="order-step" id="step4" style="display:none;">
+                    <div style="text-align:center; padding: 2rem;">
+                        <div style="font-size:4rem; margin-bottom:1rem;">🎉</div>
+                        <h3 style="margin-bottom:1rem;">Dziękujemy za zamówienie!</h3>
+                        <p style="color:var(--color-text-light);">Skontaktujemy się z Tobą w celu potwierdzenia.</p>
+                        <p style="margin-top:1rem;"><strong>Numer zamówienia:</strong> <span id="orderNumber"></span></p>
                     </div>
+                </div>
+
+                <!-- Navigation Buttons -->
+                <div class="modal-actions" id="modalActions">
+                    <button class="btn btn-secondary" id="prevBtn" onclick="prevStep()" style="display:none;">← Wstecz</button>
+                    <button class="btn btn-primary" id="nextBtn" onclick="nextStep()"><span>Dalej →</span></button>
                 </div>
             </div>
         </div>
     </div>
 
+    <!-- Added to cart notification -->
+    <div class="added-notification" id="addedNotification">✓ Dodano do koszyka!</div>
+
+    <!-- Scripts -->
     <script src="js/products.js"></script>
     <script src="js/cart.js"></script>
     <script src="js/calendar.js"></script>
     <script src="js/app.js"></script>
+
+    <!-- Premium Effects Script -->
+    <script>
+        // Navbar scroll effect
+        window.addEventListener("scroll", () => {
+            const navbar = document.getElementById("navbar");
+            if (window.scrollY > 50) {
+                navbar.classList.add("scrolled");
+            } else {
+                navbar.classList.remove("scrolled");
+            }
+        });
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: "0px 0px -50px 0px"
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("visible");
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll(".fade-in").forEach(el => observer.observe(el));
+
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            document.querySelector(".nav-links").classList.toggle("active");
+        }
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll("a[href^=\"#\"]").forEach(anchor => {
+            anchor.addEventListener("click", function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute("href"));
+                if (target) {
+                    target.scrollIntoView({ behavior: "smooth", block: "start" });
+                }
+            });
+        });
+
+        // Add stagger animation to product cards
+        function animateProducts() {
+            const cards = document.querySelectorAll(".product-card");
+            cards.forEach((card, index) => {
+                card.style.opacity = "0";
+                card.style.transform = "translateY(30px)";
+                setTimeout(() => {
+                    card.style.transition = "opacity 0.5s ease, transform 0.5s ease";
+                    card.style.opacity = "1";
+                    card.style.transform = "translateY(0)";
+                }, index * 100);
+            });
+        }
+
+        // Run after products load
+        setTimeout(animateProducts, 300);
+    </script>
 </body>
 </html>
