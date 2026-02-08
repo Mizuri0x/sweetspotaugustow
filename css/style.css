@@ -100,7 +100,7 @@ body {
     z-index: -1;
     background: var(--gradient-hero);
     background-size: 400% 400%;
-    animation: gradientShift 15s ease infinite;
+    animation: gradientShift 35s ease infinite;
     opacity: 0.07;
 }
 
@@ -331,7 +331,7 @@ body {
     overflow: hidden;
     background: var(--gradient-hero);
     background-size: 400% 400%;
-    animation: gradientShift 15s ease infinite;
+    animation: gradientShift 35s ease infinite;
 }
 
 .hero::before {
@@ -847,7 +847,7 @@ body {
     padding: var(--spacing-xl) 0;
     background: var(--gradient-hero);
     background-size: 400% 400%;
-    animation: gradientShift 15s ease infinite;
+    animation: gradientShift 35s ease infinite;
     position: relative;
 }
 
