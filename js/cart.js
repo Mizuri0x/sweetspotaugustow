@@ -118,7 +118,7 @@ function updateCartUI() {
                             <button class="quantity-btn" onclick="updateQuantity(${item.id}, -1)">−</button>
                             <span>${item.quantity}</span>
                             <button class="quantity-btn" onclick="updateQuantity(${item.id}, 1)">+</button>
-                            <button class="quantity-btn" onclick="removeFromCart(${item.id})" style="margin-left: auto; color: #e74c3c;">🗑</button>
+                            <button class="delete-btn" onclick="removeFromCart(${item.id})">🗑</button>
                         </div>
                     </div>
                 </div>
