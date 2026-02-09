@@ -234,6 +234,8 @@ body {
     display: flex;
     list-style: none;
     gap: var(--spacing-md);
+    justify-content: center;
+    flex: 1;
 }
 
 .nav-links a {
@@ -1606,8 +1608,12 @@ footer {
 
 @media (max-width: 768px) {
     .nav-links {
-        display: none;
-    }
+    display: flex;
+    list-style: none;
+    gap: var(--spacing-md);
+    justify-content: center;
+    flex: 1;
+}
 
     .mobile-menu-btn {
         display: flex;
