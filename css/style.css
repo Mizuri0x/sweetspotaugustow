@@ -32,13 +32,7 @@ html {
     backface-visibility: hidden;
 }
 
-/* Reduce paint during scroll */
-.hero,
-.products,
-.about,
-.contact {
-    contain: content;
-}
+/* Paint optimization - removed contain:content (breaks fixed modals) */
 
 /* ==========================================
    SWEET SPOT AUGUSTÓW - Premium Redesign 2026
@@ -1254,6 +1248,7 @@ footer {
     justify-content: center;
     opacity: 0;
     visibility: hidden;
+    z-index: 9999;
     transition: var(--transition-smooth);
     z-index: 3000;
     padding: var(--spacing-md);
