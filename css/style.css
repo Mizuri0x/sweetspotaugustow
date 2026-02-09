@@ -173,9 +173,9 @@ body {
     max-width: 1400px;
     margin: 0 auto;
     padding: 0 var(--spacing-md);
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
     align-items: center;
-    justify-content: space-between;
 }
 
 .logo {
@@ -183,6 +183,7 @@ body {
     align-items: center;
     gap: 0.75rem;
     text-decoration: none;
+    justify-self: start;
 }
 
 .logo-icon {
@@ -220,6 +221,7 @@ body {
     align-items: center;
     gap: 0.75rem;
     text-decoration: none;
+    justify-self: start;
 }
 
 .logo-text-wrapper {
@@ -276,8 +278,7 @@ body {
     display: flex;
     list-style: none;
     gap: var(--spacing-md);
-    justify-content: center;
-    flex: 1;
+    justify-self: center;
 }
 
 .nav-links a {
@@ -313,15 +314,11 @@ body {
 
 /* Cart Icon */
 .cart-icon {
-    position: relative;
     cursor: pointer;
+    position: relative;
     font-size: 1.5rem;
-    padding: 0.75rem;
-    background: var(--glass-bg);
-    backdrop-filter: blur(10px);
-    border-radius: var(--radius-md);
-    border: 1px solid var(--glass-border);
-    transition: var(--transition-bounce);
+    transition: var(--transition-fast);
+    justify-self: end;
 }
 
 .cart-icon:hover {
@@ -997,6 +994,7 @@ footer {
     align-items: center;
     gap: 0.75rem;
     text-decoration: none;
+    justify-self: start;
 }
 
 .logo-text-wrapper {
@@ -1653,8 +1651,7 @@ footer {
     display: flex;
     list-style: none;
     gap: var(--spacing-md);
-    justify-content: center;
-    flex: 1;
+    justify-self: center;
 }
 
     .mobile-menu-btn {
