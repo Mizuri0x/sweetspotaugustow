@@ -317,7 +317,12 @@ body {
     cursor: pointer;
     position: relative;
     font-size: 1.5rem;
-    transition: var(--transition-fast);
+    padding: 0.75rem;
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--glass-border);
+    transition: var(--transition-bounce);
     justify-self: end;
 }
 
