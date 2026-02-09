@@ -1,3 +1,35 @@
+
+/* ---------- Performance Optimizations ---------- */
+* {
+    -webkit-font-smoothing: antialiased;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+.animated-bg,
+.floating-shape,
+.floating-emoji {
+    will-change: transform;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}
+
+.product-card,
+.navbar {
+    will-change: transform, opacity;
+    backface-visibility: hidden;
+}
+
+/* Reduce paint during scroll */
+.hero,
+.products,
+.about,
+.contact {
+    contain: content;
+}
+
 /* ==========================================
    SWEET SPOT AUGUSTÓW - Premium Redesign 2026
    Modern Glassmorphism + Animated Gradients
@@ -122,8 +154,8 @@ body {
 
 .navbar.scrolled {
     background: rgba(255, 255, 255, 0.8);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
 }
 
@@ -613,8 +645,8 @@ body {
 /* Glassmorphism Product Card */
 .product-card {
     background: rgba(255, 255, 255, 0.7);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     border-radius: var(--radius-lg);
     border: 1px solid rgba(255, 255, 255, 0.8);
     overflow: hidden;
@@ -870,7 +902,7 @@ body {
 .contact-info,
 .contact-hours {
     background: rgba(255,255,255,0.9);
-    backdrop-filter: blur(20px);
+    backdrop-filter: blur(10px);
     padding: var(--spacing-md);
     border-radius: var(--radius-lg);
     box-shadow: 0 20px 50px rgba(0,0,0,0.1);
