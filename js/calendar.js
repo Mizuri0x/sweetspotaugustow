@@ -39,6 +39,19 @@ function goToStep(step) {
     showStep(step);
 }
 
+function nextStep() {
+    if (currentStep < 4) {
+        goToStep(currentStep + 1);
+    }
+}
+
+function prevStep() {
+    if (currentStep > 1) {
+        goToStep(currentStep - 1);
+    }
+}
+
+
 function showStep(step) {
     // Hide all steps
     for (let i = 1; i <= 4; i++) {

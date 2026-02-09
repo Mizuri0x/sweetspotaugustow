@@ -23,7 +23,7 @@ function addToCart(productId) {
     const product = getProductById(productId);
     if (!product) return;
 
-    const existingItem = cart.find(item => item.id === productId);
+    const existingItem = cart.find(item => String(item.id) === String(productId));
 
     if (existingItem) {
         existingItem.quantity += 1;
@@ -44,14 +44,14 @@ function addToCart(productId) {
 
 // Remove item from cart
 function removeFromCart(productId) {
-    cart = cart.filter(item => item.id !== productId);
+    cart = cart.filter(item => String(item.id) !== String(productId));
     saveCart();
     updateCartUI();
 }
 
 // Update item quantity
 function updateQuantity(productId, change) {
-    const item = cart.find(item => item.id === productId);
+    const item = cart.find(item => String(item.id) === String(productId));
     if (!item) return;
 
     item.quantity += change;

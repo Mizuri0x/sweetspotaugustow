@@ -220,35 +220,9 @@ function showOrderConfirmation(order) {
     }
 }
 
-// ========== MOBILE MENU ==========
-function toggleMobileMenu() {
-    const navLinks = document.querySelector(".nav-links");
-    navLinks.classList.toggle("mobile-open");
-}
+// Mobile menu - handled in inline script
 
-// ========== SMOOTH SCROLL ==========
-document.addEventListener("DOMContentLoaded", () => {
-    // Smooth scroll for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener("click", function(e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute("href"));
-            if (target) {
-                target.scrollIntoView({ behavior: "smooth", block: "start" });
-            }
-        });
-    });
-
-    // Navbar background on scroll
-    window.addEventListener("scroll", () => {
-        const navbar = document.querySelector(".navbar");
-        if (window.scrollY > 50) {
-            navbar.style.boxShadow = "0 4px 20px rgba(0,0,0,0.1)";
-        } else {
-            navbar.style.boxShadow = "0 2px 20px rgba(0,0,0,0.05)";
-        }
-    });
-});
+// Smooth scroll and navbar - handled in inline script
 
 // ========== UTILITY FUNCTIONS ==========
 
