@@ -285,10 +285,10 @@ function initCategoryFilters() {
             const category = pill.dataset.category;
             renderProducts(category);
 
-            // Scroll to products section
-            const productsSection = document.getElementById("products");
-            if (productsSection) {
-                productsSection.scrollIntoView({ behavior: "smooth", block: "start" });
+            // Scroll to categories + products from top
+            const categoriesSection = document.querySelector(".categories");
+            if (categoriesSection) {
+                categoriesSection.scrollIntoView({ behavior: "smooth", block: "start" });
             }
         });
     });
