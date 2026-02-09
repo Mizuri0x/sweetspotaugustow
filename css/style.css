@@ -1,4 +1,14 @@
 
+/* ---------- Hide Scrollbar ---------- */
+html {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE/Edge */
+}
+
+html::-webkit-scrollbar {
+    display: none; /* Chrome/Safari/Opera */
+}
+
 /* ---------- Performance Optimizations ---------- */
 * {
     -webkit-font-smoothing: antialiased;
@@ -1669,22 +1679,13 @@ footer {
 }
 
 /* ---------- Custom Scrollbar ---------- */
-::-webkit-scrollbar {
-    width: 10px;
-}
 
-::-webkit-scrollbar-track {
-    background: var(--color-bg);
-}
 
-::-webkit-scrollbar-thumb {
-    background: var(--gradient-warm);
-    border-radius: 10px;
-}
 
-::-webkit-scrollbar-thumb:hover {
-    background: var(--color-accent-dark);
-}
+
+
+
+
 
 /* ---------- Selection ---------- */
 ::selection {
