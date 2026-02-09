@@ -115,10 +115,10 @@ function updateCartUI() {
                         <div class="cart-item-name">${item.name}</div>
                         <div class="cart-item-price">${item.price} PLN</div>
                         <div class="cart-item-quantity">
-                            <button class="quantity-btn" onclick="updateQuantity(${item.id}, -1)">−</button>
+                            <button class="quantity-btn" onclick="updateQuantity('${item.id}', -1)">−</button>
                             <span>${item.quantity}</span>
-                            <button class="quantity-btn" onclick="updateQuantity(${item.id}, 1)">+</button>
-                            <button class="delete-btn" onclick="removeFromCart(${item.id})">🗑</button>
+                            <button class="quantity-btn" onclick="updateQuantity('${item.id}', 1)">+</button>
+                            <button class="delete-btn" onclick="removeFromCart('${item.id}')">🗑</button>
                         </div>
                     </div>
                 </div>
