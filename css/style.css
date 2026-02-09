@@ -561,13 +561,28 @@ body {
 }
 
 /* ---------- Category Pills ---------- */
+/* ---------- Smart Hide Categories on Scroll ---------- */
 .categories {
-    padding: var(--spacing-lg) 0 var(--spacing-md);
-    background: var(--color-bg);
     position: sticky;
-    top: 70px;
-    z-index: 100;
+    top: 0;
+    z-index: 90;
+    background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    padding: var(--spacing-sm) 0;
+}
+
+.categories.hidden {
+    transform: translateY(-100%);
+    opacity: 0;
+    pointer-events: none;
+}
+
+.categories.visible {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
 }
 
 .category-pills {

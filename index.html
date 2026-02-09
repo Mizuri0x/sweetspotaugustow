@@ -344,6 +344,47 @@
 
         // Run after products load
         setTimeout(animateProducts, 300);
+
+
+// Smart hide/show categories on scroll (mobile friendly)
+(function() {
+    let lastScrollY = window.scrollY;
+    let ticking = false;
+    const categories = document.querySelector('.categories');
+    if (!categories) return;
+
+    // Only activate when we're past the hero section
+    const heroHeight = document.querySelector('.hero') ? document.querySelector('.hero').offsetHeight : 400;
+
+    window.addEventListener('scroll', function() {
+        if (!ticking) {
+            window.requestAnimationFrame(function() {
+                const currentScrollY = window.scrollY;
+
+                // Only hide/show when scrolled past hero
+                if (currentScrollY > heroHeight) {
+                    if (currentScrollY > lastScrollY && currentScrollY - lastScrollY > 5) {
+                        // Scrolling DOWN - hide
+                        categories.classList.add('hidden');
+                        categories.classList.remove('visible');
+                    } else if (lastScrollY > currentScrollY && lastScrollY - currentScrollY > 5) {
+                        // Scrolling UP - show
+                        categories.classList.remove('hidden');
+                        categories.classList.add('visible');
+                    }
+                } else {
+                    // Above hero - always show
+                    categories.classList.remove('hidden');
+                    categories.classList.add('visible');
+                }
+
+                lastScrollY = currentScrollY;
+                ticking = false;
+            });
+            ticking = true;
+        }
+    });
+})();
     </script>
 
     <!-- Macaron Flavor Picker Modal -->
