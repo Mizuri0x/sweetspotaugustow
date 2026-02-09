@@ -1653,3 +1653,134 @@ footer {
     background: var(--color-pink);
     color: white;
 }
+
+/* ---------- Flavor Picker Modal ---------- */
+.flavor-picker {
+    max-width: 450px;
+    padding: var(--spacing-md);
+}
+
+.flavor-subtitle {
+    text-align: center;
+    color: var(--color-text-light);
+    margin-bottom: var(--spacing-md);
+}
+
+.flavor-options {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-md);
+}
+
+.flavor-option {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--spacing-sm) var(--spacing-md);
+    background: var(--color-bg-alt);
+    border-radius: var(--radius-md);
+    transition: var(--transition-fast);
+}
+
+.flavor-option:hover {
+    background: var(--gradient-soft);
+}
+
+.flavor-info {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.flavor-emoji {
+    font-size: 2rem;
+}
+
+.flavor-name {
+    font-weight: 600;
+    color: var(--color-text);
+}
+
+.flavor-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.flavor-btn {
+    width: 36px;
+    height: 36px;
+    border: none;
+    border-radius: 50%;
+    background: var(--gradient-warm);
+    color: white;
+    font-size: 1.2rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: var(--transition-fast);
+    display: grid;
+    place-items: center;
+}
+
+.flavor-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 15px rgba(250, 112, 154, 0.4);
+}
+
+.flavor-btn:active {
+    transform: scale(0.95);
+}
+
+.flavor-btn:disabled {
+    background: var(--color-text-light);
+    opacity: 0.3;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.flavor-qty {
+    font-size: 1.2rem;
+    font-weight: 700;
+    min-width: 30px;
+    text-align: center;
+    color: var(--color-text);
+}
+
+.flavor-counter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--spacing-sm) var(--spacing-md);
+    background: var(--gradient-soft);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--spacing-md);
+}
+
+.flavor-status {
+    font-weight: 600;
+}
+
+.flavor-status.ready {
+    color: #27ae60;
+}
+
+.flavor-confirm {
+    width: 100%;
+    padding: var(--spacing-sm) var(--spacing-md);
+    font-size: 1.1rem;
+}
+
+.flavor-confirm:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background: var(--color-text-light);
+}
+
+/* Cart item flavors */
+.cart-item-flavors {
+    font-size: 0.75rem;
+    color: var(--color-text-light);
+    margin-bottom: 0.25rem;
+    font-style: italic;
+}

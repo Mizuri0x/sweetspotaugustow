@@ -276,6 +276,7 @@
     <script src="js/cart.js"></script>
     <script src="js/calendar.js"></script>
     <script src="js/app.js"></script>
+    <script src="js/flavors.js"></script>
 
     <!-- Premium Effects Script -->
     <script>
@@ -338,5 +339,28 @@
         // Run after products load
         setTimeout(animateProducts, 300);
     </script>
+
+    <!-- Macaron Flavor Picker Modal -->
+    <div id="flavorModal" class="modal">
+        <div class="modal-content flavor-picker">
+            <button class="modal-close" onclick="closeFlavorModal()">&times;</button>
+            <h2 class="modal-title">🌈 Wybierz smaki</h2>
+            <p class="flavor-subtitle" id="flavorSubtitle">Wybierz 6 makaroników</p>
+
+            <div class="flavor-options" id="flavorOptions">
+                <!-- Filled by JS -->
+            </div>
+
+            <div class="flavor-counter">
+                <span>Wybrano: <strong id="flavorCount">0</strong>/<strong id="flavorTotal">6</strong></span>
+                <span id="flavorStatus" class="flavor-status">❌ Wybierz więcej</span>
+            </div>
+
+            <button class="btn-primary flavor-confirm" id="flavorConfirmBtn" onclick="confirmFlavorSelection()" disabled>
+                Dodaj do koszyka 🛒
+            </button>
+        </div>
+    </div>
+
 </body>
 </html>
