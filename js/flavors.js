@@ -146,15 +146,23 @@ function confirmFlavorSelection() {
     showAddedNotification(currentBoxProduct.name + " (" + selectedFlavors + ")");
 }
 
-// Override addToCart for box products
-const originalAddToCart = addToCart;
-addToCart = function(productId) {
-    if (isMacaronBox(productId)) {
-        openFlavorModal(productId);
-    } else {
-        originalAddToCart(productId);
-    }
-};
+// Override addToCart for box products (safely)
+document.addEventListener("DOMContentLoaded", () => {
+    // Wait a bit to ensure cart.js is fully loaded
+    setTimeout(() => {
+        if (typeof window.originalAddToCart === 'undefined' && typeof addToCart === 'function') {
+            window.originalAddToCart = addToCart;
+            window.addToCart = function(productId) {
+                if (isMacaronBox(productId)) {
+                    openFlavorModal(productId);
+                } else {
+                    window.originalAddToCart(productId);
+                }
+            };
+            console.log("🌈 Macaron flavor picker: addToCart override ready!");
+        }
+    }, 100);
+});
 
 // Close on escape
 document.addEventListener("keydown", (e) => {
