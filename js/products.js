@@ -97,42 +97,62 @@ const PRODUCTS = [
         badge: "Nowość"
     },
 
-    // === CHEESECAKE STICKS ===
+    // === MAKARONIKI ===
     {
-        id: 20,
-        name: "Classic Cheesecake Stick",
-        description: "Kremowy sernik nowojorski w formie eleganckiego batona",
-        price: 14,
-        category: "cheesecake",
-        emoji: "🧀",
+        id: 50,
+        name: "Makaronik Mango-Marakuja",
+        description: "Egzotyczne połączenie świeżego mango z kwaskowatą marakują",
+        price: 8,
+        category: "makaroniki",
+        emoji: "🥭",
+        badge: "Nowość"
+    },
+    {
+        id: 51,
+        name: "Makaronik Czekolada-Pralina",
+        description: "Intensywna czekolada z domową praliną orzechową",
+        price: 8,
+        category: "makaroniki",
+        emoji: "🍫",
         badge: null
     },
     {
-        id: 21,
-        name: "Cheesecake Stick Malina",
-        description: "Sernik z warstwą musu malinowego i świeżymi owocami",
-        price: 16,
-        category: "cheesecake",
-        emoji: "🍓",
+        id: 52,
+        name: "Makaronik Pistacjowy",
+        description: "Klasyka - prawdziwa pasta pistacjowa z Sycylii",
+        price: 9,
+        category: "makaroniki",
+        emoji: "🌰",
         badge: "Bestseller"
     },
     {
-        id: 22,
-        name: "Cheesecake Stick Oreo",
-        description: "Sernik z kawałkami ciastek Oreo i czekoladową polewą",
-        price: 16,
-        category: "cheesecake",
-        emoji: "🍪",
+        id: 53,
+        name: "Makaronik Śmietankowy",
+        description: "Delikatny krem waniliowy w chrupiącej skorupce",
+        price: 7,
+        category: "makaroniki",
+        emoji: "🤍",
         badge: null
     },
     {
-        id: 23,
-        name: "Cheesecake Stick Mango",
-        description: "Egzotyczny sernik z musem mango i marakują",
-        price: 17,
-        category: "cheesecake",
-        emoji: "🥭",
-        badge: null
+        id: 60,
+        name: "Box Makaroników 6 szt.",
+        description: "Wybierz 6 dowolnych smaków - idealny prezent!",
+        price: 45,
+        category: "makaroniki",
+        emoji: "🎁",
+        badge: "Mix smaków",
+        unit: "box"
+    },
+    {
+        id: 61,
+        name: "Box Makaroników 12 szt.",
+        description: "Wybierz 12 dowolnych smaków - na większe okazje",
+        price: 85,
+        category: "makaroniki",
+        emoji: "🎀",
+        badge: "Mix smaków",
+        unit: "box"
     },
 
     // === CIASTA ===
