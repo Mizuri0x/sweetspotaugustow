@@ -284,6 +284,12 @@ function initCategoryFilters() {
             // Filter products
             const category = pill.dataset.category;
             renderProducts(category);
+
+            // Scroll to products section
+            const productsSection = document.getElementById("products");
+            if (productsSection) {
+                productsSection.scrollIntoView({ behavior: "smooth", block: "start" });
+            }
         });
     });
 }
