@@ -34,6 +34,11 @@ const CONFIG = {
 
 // ========== ORDER MODAL ==========
 function openOrderModal() {
+    if (typeof cart !== 'undefined' && cart.length === 0) {
+        alert('Koszyk jest pusty - dodaj produkty przed zamówieniem');
+        return;
+    }
+
     const modal = document.getElementById("orderModal");
     modal.classList.add("active");
     document.body.style.overflow = "hidden";

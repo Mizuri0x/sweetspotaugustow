@@ -95,6 +95,8 @@ function updateCartUI() {
     // Enable/disable checkout button
     if (checkoutBtn) {
         checkoutBtn.disabled = cart.length === 0;
+        checkoutBtn.style.opacity = cart.length === 0 ? '0.5' : '1';
+        checkoutBtn.style.pointerEvents = cart.length === 0 ? 'none' : 'auto';
     }
 
     // Render cart items
