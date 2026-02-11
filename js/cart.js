@@ -154,32 +154,17 @@ function toggleCart() {
 
 // Show "added to cart" notification
 function showAddedNotification(productName) {
-    // Create notification element
-    const notification = document.createElement("div");
-    notification.className = "add-notification";
-    notification.innerHTML = `✓ ${productName} dodano do koszyka`;
-    notification.style.cssText = `
-        position: fixed;
-        bottom: 20px;
-        left: 50%;
-        transform: translateX(-50%);
-        background: #4A4A4A;
-        color: white;
-        padding: 12px 24px;
-        border-radius: 50px;
-        font-size: 0.9rem;
-        z-index: 9999;
-        animation: slideUp 0.3s ease;
-        box-shadow: 0 4px 20px rgba(0,0,0,0.2);
-    `;
+    var el = document.getElementById('addedNotification');
+    if (!el) return;
 
-    document.body.appendChild(notification);
+    el.textContent = (productName || 'Produkt') + ' dodano do koszyka!';
+    el.classList.add('show');
 
-    // Remove after 2 seconds
-    setTimeout(() => {
-        notification.style.animation = "fadeOut 0.3s ease forwards";
-        setTimeout(() => notification.remove(), 300);
-    }, 2000);
+    // Wyczysc poprzedni timeout jesli istnieje
+    if (el._hideTimeout) clearTimeout(el._hideTimeout);
+    el._hideTimeout = setTimeout(function() {
+        el.classList.remove('show');
+    }, 2500);
 }
 
 // Add animation styles
