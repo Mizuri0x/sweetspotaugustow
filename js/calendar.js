@@ -40,8 +40,60 @@ function goToStep(step) {
 }
 
 function nextStep() {
+    // Walidacja biezacego kroku przed przejsciem dalej
+    if (currentStep === 1) {
+        if (!selectedDate) {
+            showStepError("Wybierz datę odbioru");
+            return;
+        }
+    } else if (currentStep === 2) {
+        if (!selectedTime) {
+            showStepError("Wybierz godzinę odbioru");
+            return;
+        }
+    } else if (currentStep === 3) {
+        const name = document.getElementById('customerName');
+        const phone = document.getElementById('customerPhone');
+        const nameVal = name ? name.value.trim() : '';
+        const phoneVal = phone ? phone.value.trim() : '';
+        if (!nameVal) {
+            showStepError("Podaj imię i nazwisko");
+            if (name) name.focus();
+            return;
+        }
+        if (!phoneVal || phoneVal.length < 9) {
+            showStepError("Podaj prawidłowy numer telefonu");
+            if (phone) phone.focus();
+            return;
+        }
+        // Krok 3->4: zloz zamowienie!
+        if (typeof submitOrder === 'function') {
+            submitOrder();
+        }
+        goToStep(4);
+        return;
+    }
+
     if (currentStep < 4) {
         goToStep(currentStep + 1);
+    }
+}
+
+// Pomocnicza funkcja do wyswietlania bledow walidacji
+function showStepError(message) {
+    const existing = document.querySelector('.step-error');
+    if (existing) existing.remove();
+
+    const errorDiv = document.createElement('div');
+    errorDiv.className = 'step-error';
+    errorDiv.textContent = message;
+    errorDiv.style.cssText = 'color: #e74c3c; text-align: center; padding: 0.75rem; margin: 0.5rem 0; background: #ffeaea; border-radius: 8px; font-size: 0.9rem;';
+
+    const modalBody = document.querySelector('.modal-body');
+    const actions = document.getElementById('modalActions');
+    if (modalBody && actions) {
+        modalBody.insertBefore(errorDiv, actions);
+        setTimeout(function() { errorDiv.remove(); }, 3000);
     }
 }
 
@@ -53,15 +105,42 @@ function prevStep() {
 
 
 function showStep(step) {
-    // Hide all steps
+    // Ukryj wszystkie kroki
     for (let i = 1; i <= 4; i++) {
-        const stepEl = document.getElementById(`step${i}`);
+        const stepEl = document.getElementById('step' + i);
         if (stepEl) stepEl.style.display = "none";
     }
 
-    // Show current step
-    const currentStepEl = document.getElementById(`step${step}`);
+    // Pokaz aktualny krok
+    const currentStepEl = document.getElementById('step' + step);
     if (currentStepEl) currentStepEl.style.display = "block";
+
+    // K07 FIX: Aktualizuj step dots
+    document.querySelectorAll('.step-dot').forEach(function(dot, i) {
+        dot.classList.toggle('active', i < step);
+    });
+
+    // K08 FIX: Zarzadzaj przyciskami nawigacji
+    var prevBtn = document.getElementById('prevBtn');
+    var nextBtn = document.getElementById('nextBtn');
+    var modalActions = document.getElementById('modalActions');
+
+    if (prevBtn) {
+        prevBtn.style.display = (step > 1 && step < 4) ? '' : 'none';
+    }
+    if (nextBtn) {
+        nextBtn.style.display = step < 4 ? '' : 'none';
+        var span = nextBtn.querySelector('span');
+        if (span) {
+            span.textContent = step === 3 ? 'Złóż zamówienie' : 'Dalej';
+        }
+    }
+    if (modalActions) {
+        modalActions.style.display = step < 4 ? '' : 'none';
+    }
+
+    // Usun ewentualne stare bledy walidacji
+    document.querySelectorAll('.step-error').forEach(function(el) { el.remove(); });
 }
 
 // ========== CALENDAR FUNCTIONS ==========
