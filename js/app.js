@@ -123,7 +123,15 @@ function generateOrderId() {
 
 // Save order to localStorage
 function saveOrder(order) {
-    const orders = JSON.parse(localStorage.getItem("sweetspot_orders") || "[]");
+    var orders = [];
+    try {
+        orders = JSON.parse(localStorage.getItem("sweetspot_orders") || "[]");
+        if (!Array.isArray(orders)) orders = [];
+    } catch (e) {
+        console.error('Dane zamowien uszkodzone, resetuje:', e);
+        orders = [];
+        localStorage.removeItem("sweetspot_orders");
+    }
     orders.push(order);
     localStorage.setItem("sweetspot_orders", JSON.stringify(orders));
 }

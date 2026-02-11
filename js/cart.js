@@ -6,16 +6,27 @@ let cart = [];
 
 // Load cart from localStorage
 function loadCart() {
-    const saved = localStorage.getItem("sweetspot_cart");
-    if (saved) {
-        cart = JSON.parse(saved);
-        updateCartUI();
+    try {
+        var saved = localStorage.getItem("sweetspot_cart");
+        if (saved) {
+            cart = JSON.parse(saved);
+            if (!Array.isArray(cart)) cart = [];
+        }
+    } catch (e) {
+        console.error('Dane koszyka uszkodzone, resetuje:', e);
+        cart = [];
+        localStorage.removeItem("sweetspot_cart");
     }
+    updateCartUI();
 }
 
 // Save cart to localStorage
 function saveCart() {
-    localStorage.setItem("sweetspot_cart", JSON.stringify(cart));
+    try {
+        localStorage.setItem("sweetspot_cart", JSON.stringify(cart));
+    } catch (e) {
+        console.error('Nie udalo sie zapisac koszyka:', e);
+    }
 }
 
 // Add item to cart
