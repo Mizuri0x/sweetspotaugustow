@@ -193,7 +193,11 @@ async function sendSMSNotification(message) {
 
 // ========== ORDER CONFIRMATION ==========
 function showOrderConfirmation(order) {
-    goToStep(4);
+    // goToStep(4) jest wywolywane z nextStep() - nie duplikujemy
+
+    // Ustaw numer zamowienia
+    var orderNumEl = document.getElementById('orderNumber');
+    if (orderNumEl) orderNumEl.textContent = order.id;
 
     const summary = document.getElementById("orderSummary");
     if (summary) {
