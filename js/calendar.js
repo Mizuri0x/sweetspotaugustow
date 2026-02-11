@@ -31,7 +31,7 @@ const MONTH_NAMES = [
 ];
 
 // Polish day names
-const DAY_NAMES = ["Nd", "Pn", "Wt", "Śr", "Cz", "Pt", "So"];
+const DAY_NAMES = ["Pon", "Wt", "Śr", "Czw", "Pt", "Sob", "Ndz"];
 
 // ========== STEP NAVIGATION ==========
 function goToStep(step) {
@@ -157,7 +157,7 @@ function renderCalendar() {
 
     const firstDay = new Date(currentYear, currentMonth, 1);
     const lastDay = new Date(currentYear, currentMonth + 1, 0);
-    const startingDay = firstDay.getDay();
+    const startingDay = (firstDay.getDay() + 6) % 7; // Monday-first: Mon=0, Sun=6
     const totalDays = lastDay.getDate();
 
     let html = `
@@ -200,16 +200,25 @@ function renderCalendar() {
 
 // Change month
 function changeMonth(delta) {
-    currentMonth += delta;
+    let newMonth = currentMonth + delta;
+    let newYear = currentYear;
 
-    if (currentMonth > 11) {
-        currentMonth = 0;
-        currentYear++;
-    } else if (currentMonth < 0) {
-        currentMonth = 11;
-        currentYear--;
+    if (newMonth > 11) {
+        newMonth = 0;
+        newYear++;
+    } else if (newMonth < 0) {
+        newMonth = 11;
+        newYear--;
     }
 
+    // S11: Block navigation to past months
+    const now = new Date();
+    if (newYear < now.getFullYear() || (newYear === now.getFullYear() && newMonth < now.getMonth())) {
+        return;
+    }
+
+    currentMonth = newMonth;
+    currentYear = newYear;
     renderCalendar();
 }
 

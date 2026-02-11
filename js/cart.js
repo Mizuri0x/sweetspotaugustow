@@ -126,6 +126,7 @@ function updateCartUI() {
                     <div class="cart-item-image">${item.emoji}</div>
                     <div class="cart-item-details">
                         <div class="cart-item-name">${item.name}</div>
+                ${item.flavors ? `<div class="cart-item-flavors" style="font-size:0.75rem;color:#888;margin-top:2px;">Smaki: ${item.flavors}</div>` : ''}
                         <div class="cart-item-price">${item.price} PLN</div>
                         <div class="cart-item-quantity">
                             <button class="quantity-btn" onclick="updateQuantity('${item.id}', -1)">−</button>

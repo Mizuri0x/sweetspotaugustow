@@ -127,7 +127,7 @@ function confirmFlavorSelection() {
 
     // Create custom cart item
     const cartItem = {
-        id: currentBoxProduct.id + "_" + Date.now(), // Unique ID for each box
+        id: "macaron-box-" + currentBoxProduct.id + "-" + MACARON_FLAVORS.filter(f => flavorSelection[f.id] > 0).map(f => f.id + "x" + flavorSelection[f.id]).sort().join("-"), // Deterministic ID for cart merge
         name: currentBoxProduct.name,
         price: currentBoxProduct.price,
         emoji: currentBoxProduct.emoji,
@@ -136,8 +136,13 @@ function confirmFlavorSelection() {
         flavorDetails: {...flavorSelection}
     };
 
-    // Add to cart directly
-    cart.push(cartItem);
+    // Add to cart - merge if identical flavor combo exists
+    const existingItem = cart.find(item => String(item.id) === String(cartItem.id));
+    if (existingItem) {
+        existingItem.quantity += 1;
+    } else {
+        cart.push(cartItem);
+    }
     saveCart();
     updateCartUI();
 
@@ -148,8 +153,7 @@ function confirmFlavorSelection() {
 
 // Override addToCart for box products (safely)
 document.addEventListener("DOMContentLoaded", () => {
-    // Wait a bit to ensure cart.js is fully loaded
-    setTimeout(() => {
+    function overrideAddToCart() {
         if (typeof window.originalAddToCart === 'undefined' && typeof addToCart === 'function') {
             window.originalAddToCart = addToCart;
             window.addToCart = function(productId) {
@@ -159,9 +163,21 @@ document.addEventListener("DOMContentLoaded", () => {
                     window.originalAddToCart(productId);
                 }
             };
-            console.log("🌈 Macaron flavor picker: addToCart override ready!");
+            console.log("Macaron flavor picker: addToCart override ready!");
+            return true;
         }
-    }, 100);
+        return false;
+    }
+    // Try immediately, then retry with requestAnimationFrame if cart.js not yet loaded
+    if (!overrideAddToCart()) {
+        let attempts = 0;
+        const maxAttempts = 50;
+        function retryOverride() {
+            if (overrideAddToCart() || ++attempts >= maxAttempts) return;
+            requestAnimationFrame(retryOverride);
+        }
+        requestAnimationFrame(retryOverride);
+    }
 });
 
 // Close on escape
