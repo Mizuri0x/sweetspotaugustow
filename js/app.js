@@ -76,7 +76,8 @@ document.addEventListener("DOMContentLoaded", () => {
 async function submitOrder() {
     const booking = getBookingInfo();
     const cartData = getCartForOrder();
-    const paymentMethod = document.querySelector('input[name="payment"]:checked').value;
+    var paymentRadio = document.querySelector('input[name="payment"]:checked');
+    var paymentMethod = paymentRadio ? paymentRadio.value : 'cash';
 
     const order = {
         id: generateOrderId(),

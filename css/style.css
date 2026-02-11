@@ -1868,3 +1868,30 @@ footer {
     margin-bottom: 0.25rem;
     font-style: italic;
 }
+
+/* K01: Payment options styles */
+.payment-options {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+.payment-option {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    border: 2px solid var(--color-border);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+.payment-option:has(input:checked) {
+    border-color: var(--color-pink);
+    background: rgba(255, 107, 157, 0.05);
+}
+.payment-option input[type="radio"] {
+    accent-color: var(--color-pink);
+}
+.payment-label {
+    font-size: 0.95rem;
+}
