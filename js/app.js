@@ -62,16 +62,9 @@ function closeOrderModal() {
 }
 
 // ========== ORDER FORM SUBMISSION ==========
-document.addEventListener("DOMContentLoaded", () => {
-    const orderForm = document.getElementById("orderForm");
-
-    if (orderForm) {
-        orderForm.addEventListener("submit", async (e) => {
-            e.preventDefault();
-            await submitOrder();
-        });
-    }
-});
+// submitOrder() jest wywolywana z nextStep() w calendar.js
+// gdy uzytkownik przechodzi z kroku 3 do 4
+// Event listener na form nie jest potrzebny - flow kontroluje stepper
 
 async function submitOrder() {
     const booking = getBookingInfo();
