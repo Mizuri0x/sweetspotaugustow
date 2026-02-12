@@ -4,13 +4,49 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sweet Spot Augustów | Monoporcje & Słodkości</title>
-    <meta name="description" content="Autorskie monoporcje, tartaletki i desery tworzone z pasją w Augustowie. Zamów online!">
+    <meta name="description" content="Sweet Spot Augustów — rękodzielnicza cukiernia w Augustowie. Torty, makaroniki, ciasta na zamówienie. Świeże składniki, wyjątkowy smak.">
+<meta name="keywords" content="cukiernia Augustów, torty na zamówienie, makaroniki, ciasta, Sweet Spot">
+<meta name="author" content="Sweet Spot Augustów">
+<link rel="canonical" href="https://sweetspot-augustow.pl">
+
+<!-- Open Graph -->
+<meta property="og:title" content="Sweet Spot Augustów — Rękodzielnicza Cukiernia">
+<meta property="og:description" content="Torty, makaroniki i ciasta na zamówienie. Świeże składniki, wyjątkowy smak.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://sweetspot-augustow.pl">
+<meta property="og:locale" content="pl_PL">
+<meta property="og:site_name" content="Sweet Spot Augustów">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Sweet Spot Augustów — Rękodzielnicza Cukiernia">
+<meta name="twitter:description" content="Torty, makaroniki i ciasta na zamówienie.">
+
+<!-- JSON-LD Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Bakery",
+  "name": "Sweet Spot Augustów",
+  "description": "Rękodzielnicza cukiernia w Augustowie. Torty, makaroniki, ciasta na zamówienie.",
+  "url": "https://sweetspot-augustow.pl",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Augustów",
+    "addressCountry": "PL"
+  },
+  "servesCuisine": "Cukiernictwo",
+  "priceRange": "$$",
+  "sameAs": ["https://instagram.com/sweetspotaugustow"]
+}
+</script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+<a href="#oferta" class="skip-to-content" aria-label="Przejdź do treści">Przejdź do treści</a>
     <!-- Animated Background -->
     <div class="animated-bg"></div>
 
@@ -28,11 +64,11 @@
                 <li><a href="#about">O nas</a></li>
                 <li><a href="#contact">Kontakt</a></li>
             </ul>
-            <div class="cart-icon" onclick="toggleCart()">
+            <div class="cart-icon" onclick="toggleCart()" role="button" tabindex="0" aria-label="Otwórz koszyk">
                 <span class="cart-emoji">🛒</span>
-                <span class="cart-count" id="cartCount">0</span>
+                <span class="cart-count" id="cartCount" aria-live="polite" aria-atomic="true">0</span>
             </div>
-            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Menu nawigacji">
                 <span></span><span></span><span></span>
             </button>
         </div>
@@ -150,7 +186,7 @@
                         <span class="contact-icon">📸</span>
                         <div>
                             <strong>Instagram</strong>
-                            <p>@sweetspotaugustow</p>
+                            <a href="https://instagram.com/sweetspotaugustow" target="_blank" rel="noopener noreferrer" aria-label="Instagram Sweet Spot Augustów">@sweetspotaugustow</a>
                         </div>
                     </div>
                 </div>
@@ -187,7 +223,7 @@
     <div class="cart-sidebar" id="cartSidebar">
         <div class="cart-header">
             <h3>🛒 Koszyk</h3>
-            <button class="cart-close" onclick="toggleCart()">✕</button>
+            <button class="cart-close" onclick="toggleCart()" aria-label="Zamknij">✕</button>
         </div>
         <div class="cart-items" id="cartItems">
             <!-- Cart items will be loaded by JavaScript -->
@@ -206,7 +242,7 @@
         <div class="modal">
             <div class="modal-header">
                 <h2>📅 Zamówienie</h2>
-                <button class="modal-close" onclick="closeOrderModal()">✕</button>
+                <button class="modal-close" onclick="closeOrderModal()" aria-label="Zamknij">✕</button>
             </div>
             <div class="modal-body">
                 <div class="steps-indicator">
@@ -283,7 +319,7 @@
     </div>
 
     <!-- Added to cart notification -->
-    <div class="added-notification" id="addedNotification">✓ Dodano do koszyka!</div>
+    <div class="added-notification" id="addedNotification" aria-live="polite">✓ Dodano do koszyka!</div>
 
     <!-- Scripts -->
     <script src="js/products.js"></script>
@@ -415,7 +451,7 @@
     <!-- Macaron Flavor Picker Modal -->
     <div class="modal-overlay" id="flavorModal">
         <div class="modal flavor-picker">
-            <button class="modal-close" onclick="closeFlavorModal()">&times;</button>
+            <button class="modal-close" onclick="closeFlavorModal()" aria-label="Zamknij">&times;</button>
             <h2 class="modal-title">🌈 Wybierz smaki</h2>
             <p class="flavor-subtitle" id="flavorSubtitle">Wybierz 6 makaroników</p>
 

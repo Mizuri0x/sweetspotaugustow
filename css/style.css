@@ -1768,3 +1768,22 @@ footer {
 .payment-label {
     font-size: 0.95rem;
 }
+
+/* Skip to content - accessibility */
+.skip-to-content {
+    position: absolute;
+    top: -100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--color-primary);
+    color: white;
+    padding: var(--space-sm) var(--space-md);
+    border-radius: var(--radius-md);
+    z-index: 10000;
+    font-weight: 600;
+    transition: top 0.3s;
+    text-decoration: none;
+}
+.skip-to-content:focus {
+    top: var(--space-sm);
+}

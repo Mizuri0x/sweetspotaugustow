@@ -257,7 +257,7 @@ function renderProducts(category = "all") {
                 <p class="product-description">${product.description}</p>
                 <div class="product-footer">
                     <span class="product-price">${product.price} PLN${product.unit ? ` / ${product.unit}` : ""}</span>
-                    <button class="add-to-cart-btn" onclick="addToCart(${product.id})" title="Dodaj do koszyka">
+                    <button class="add-to-cart-btn" onclick="addToCart(${product.id})" title="Dodaj do koszyka" aria-label="Dodaj do koszyka">
                         +
                     </button>
                 </div>

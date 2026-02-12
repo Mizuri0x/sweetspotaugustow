@@ -129,10 +129,10 @@ function updateCartUI() {
                 ${item.flavors ? `<div class="cart-item-flavors" style="font-size:0.75rem;color:#888;margin-top:2px;">Smaki: ${item.flavors}</div>` : ''}
                         <div class="cart-item-price">${item.price} PLN</div>
                         <div class="cart-item-quantity">
-                            <button class="quantity-btn" onclick="updateQuantity('${item.id}', -1)">−</button>
+                            <button class="quantity-btn" onclick="updateQuantity('${item.id}', -1)" aria-label="Zmniejsz ilość">−</button>
                             <span>${item.quantity}</span>
-                            <button class="quantity-btn" onclick="updateQuantity('${item.id}', 1)">+</button>
-                            <button class="delete-btn" onclick="removeFromCart('${item.id}')">🗑</button>
+                            <button class="quantity-btn" onclick="updateQuantity('${item.id}', 1)" aria-label="Zwiększ ilość">+</button>
+                            <button class="delete-btn" onclick="removeFromCart('${item.id}')" aria-label="Usuń z koszyka">🗑</button>
                         </div>
                     </div>
                 </div>

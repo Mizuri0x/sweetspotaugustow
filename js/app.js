@@ -71,7 +71,62 @@ function closeOrderModal() {
 // gdy uzytkownik przechodzi z kroku 3 do 4
 // Event listener na form nie jest potrzebny - flow kontroluje stepper
 
+// ========== FORM VALIDATION ==========
+function validateOrderForm() {
+    const phone = document.getElementById("customerPhone").value.trim();
+    const email = document.getElementById("customerEmail").value.trim();
+    const name = document.getElementById("customerName").value.trim();
+    const phoneRegex = /^(\+48)?\s?\d{3}\s?\d{3}\s?\d{3}$/;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    let isValid = true;
+
+    // Reset previous errors
+    ["customerName", "customerPhone", "customerEmail"].forEach(function(id) {
+        const el = document.getElementById(id);
+        if (el) {
+            el.style.borderColor = "";
+            const err = el.parentElement.querySelector(".field-error");
+            if (err) err.remove();
+        }
+    });
+
+    function showFieldError(fieldId, message) {
+        const el = document.getElementById(fieldId);
+        if (!el) return;
+        el.style.borderColor = "#e74c3c";
+        const errDiv = document.createElement("div");
+        errDiv.className = "field-error";
+        errDiv.style.cssText = "color:#e74c3c;font-size:0.8rem;margin-top:4px;";
+        errDiv.textContent = message;
+        el.parentElement.appendChild(errDiv);
+    }
+
+    // Name validation
+    if (!name) {
+        showFieldError("customerName", "Podaj imię i nazwisko");
+        isValid = false;
+    }
+
+    // Phone validation
+    if (!phone || !phoneRegex.test(phone)) {
+        showFieldError("customerPhone", "Podaj poprawny numer telefonu (np. 123 456 789)");
+        isValid = false;
+    }
+
+    // Email validation (only if filled - it's optional)
+    if (email && !emailRegex.test(email)) {
+        showFieldError("customerEmail", "Podaj poprawny adres email");
+        isValid = false;
+    }
+
+    return isValid;
+}
+
 async function submitOrder() {
+    // Validate form first
+    if (!validateOrderForm()) {
+        return false;
+    }
     const booking = getBookingInfo();
     const cartData = getCartForOrder();
     var paymentRadio = document.querySelector('input[name="payment"]:checked');
