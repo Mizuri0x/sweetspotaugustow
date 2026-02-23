@@ -759,7 +759,7 @@ a {
 }
 
 .product-card:hover .product-image img {
-    transform: scale(1.08);
+    transform: scale(1.05);
 }
 
 .product-card .product-image .product-emoji {
@@ -846,8 +846,9 @@ a {
     font-size: 0.82rem;
     font-weight: 600;
     cursor: pointer;
-    transition: all var(--transition-fast);
+    transition: background 0.2s var(--ease-smooth), color 0.2s var(--ease-smooth), transform 0.2s var(--ease-smooth);
     font-family: var(--font-body);
+    will-change: transform;
 }
 
 .product-card .add-to-cart-btn:hover,
@@ -855,7 +856,6 @@ a {
     background: var(--color-gold);
     color: var(--color-dark);
     transform: scale(1.05);
-    box-shadow: var(--shadow-gold-glow);
 }
 
 /* Macaron flavor picker */
@@ -1923,49 +1923,23 @@ footer .container {
     text-shadow:
         0 0 30px rgba(255, 255, 255, 0.4),
         0 0 60px rgba(255, 255, 255, 0.15);
-    transition: all 0.5s var(--ease-out);
+    transition: transform 0.4s var(--ease-smooth);
 }
 
 .product-card:hover .product-image .product-emoji {
-    font-size: 5.5rem;
-    text-shadow:
-        0 0 40px rgba(255, 255, 255, 0.5),
-        0 0 80px rgba(255, 255, 255, 0.2);
-    transform: translateZ(0) scale(1.05);
+    transform: scale(1.1);
 }
 
 /* Card hover — consolidated in main .product-card rules */
 
-/* Gold shimmer border on hover */
-.product-card::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    border-radius: var(--radius-lg);
-    border: 2px solid rgba(196, 162, 101, 0);
-    opacity: 0;
-    transition: opacity 0.35s var(--ease-smooth), border-color 0.35s var(--ease-smooth);
-    pointer-events: none;
-    z-index: 1;
-}
-
-.product-card:hover::before {
-    opacity: 1;
-    border-color: rgba(196, 162, 101, 0.35);
-}
+/* gold shimmer removed for performance — card shadow is enough */
 
 /* Enhanced product info area */
 .product-card .product-info {
     position: relative;
 }
 
-.product-card .product-name {
-    transition: color 0.3s ease;
-}
-
-.product-card:hover .product-name {
-    color: var(--color-primary);
-}
+/* name color hover removed for performance */
 
 /* Animated add-to-cart button */
 .add-to-cart-btn {
@@ -1994,9 +1968,7 @@ footer .container {
 }
 
 /* Product badge enhancement */
-.product-card .product-badge {
-    animation: badgePulse 2s ease-in-out infinite;
-}
+/* badge pulse removed for performance */
 
 @keyframes badgePulse {
     0%, 100% { box-shadow: 0 3px 10px rgba(212, 144, 85, 0.3); }
