@@ -47,9 +47,11 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&family=DM+Sans:wght@300;400;500;600;700&family=Caveat:wght@400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.min.css">
 <link rel="sitemap" type="application/xml" href="/sweetspotaugustow/sitemap.xml">
-</head>
+    <!-- Preload critical fonts -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Mulish:wght@300;400;500;600;700&display=swap" as="style">
+  </head>
 <body>
 <a href="#oferta" class="skip-to-content" aria-label="Przejdź do treści">Przejdź do treści</a>
     <!-- Animated Background -->
@@ -206,7 +208,7 @@
                 </div>
                 <div class="about-image reveal-on-scroll">
                     <div class="about-img-wrapper">
-                        <img src="img/cake-closeup.jpg" alt="Autorskie desery Sweet Spot" loading="lazy">
+                        <img src="img/cake-closeup.webp" alt="Autorskie desery Sweet Spot" loading="lazy">
                     </div>
                 </div>
             </div>
@@ -391,12 +393,12 @@
     <div class="added-notification" id="addedNotification" aria-live="polite">✓ Dodano do koszyka!</div>
 
     <!-- Scripts -->
-    <script src="js/products.js"></script>
-    <script src="js/cart.js"></script>
-    <script src="js/calendar.js"></script>
-    <script src="js/app.js"></script>
-    <script src="js/flavors.js"></script>
-    <script src="js/animations.js"></script>
+    <script defer src="js/products.min.js"></script>
+    <script defer src="js/cart.min.js"></script>
+    <script defer src="js/calendar.min.js"></script>
+    <script defer src="js/app.min.js"></script>
+    <script defer src="js/flavors.min.js"></script>
+    <script defer src="js/animations.min.js"></script>
 
     <!-- Premium Effects Script -->
     <script>

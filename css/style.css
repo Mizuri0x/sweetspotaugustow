@@ -334,7 +334,7 @@ a {
             rgba(42, 37, 32, 0.70) 60%,
             rgba(26, 26, 30, 0.85) 100%
         ),
-        url("../img/hero-bakery.jpg") center/cover no-repeat;
+        url("../img/hero-bakery.webp") center/cover no-repeat;
 }
 
 .hero::before {
