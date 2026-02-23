@@ -249,7 +249,7 @@ function renderProducts(category = "all") {
     grid.innerHTML = filtered.map(product => `
         <div class="product-card reveal-on-scroll" data-category="${product.category}" data-product-id="${product.id}">
             <div class="product-image">
-                ${product.emoji}
+                <span class="product-emoji">${product.emoji}</span>
                 ${product.badge ? `<span class="product-badge">${product.badge}</span>` : ""}
             </div>
             <div class="product-info">

@@ -2475,372 +2475,539 @@ footer .container {
 .mb-2 { margin-bottom: 1rem; }
 
 
+/* ==========================================================
+   WOW OVERHAUL v2 — Premium Luxury Polish
+   ========================================================== */
 
-
-/* ==========================================================================
-   SWEET SPOT — WOW PREMIUM LAYER
-   One cohesive design system override for maximum visual impact.
-   Author: Agent Zero · 2026-02-23
-   ========================================================================== */
-
-/* ---------- 0. GLOBAL ENHANCEMENTS ---------- */
-html {
-    scroll-behavior: smooth;
+/* --- 1. HIDE FLOATING EMOJIS (childish, clutters hero) --- */
+.floating-emoji {
+    display: none !important;
 }
-::selection {
-    background: rgba(196, 162, 101, 0.3);
-    color: #1E1E22;
-}
-
-/* ---------- 1. NAVBAR — Frosted Glass ---------- */
-.navbar {
-    backdrop-filter: blur(20px) saturate(180%);
-    -webkit-backdrop-filter: blur(20px) saturate(180%);
-    background: rgba(30, 30, 34, 0.85) !important;
-    border-bottom: 1px solid rgba(196, 162, 101, 0.15);
-    box-shadow: 0 4px 30px rgba(0,0,0,0.12);
-}
-.navbar .logo {
-    color: #FDFBF7 !important;
-}
-.navbar a, .navbar .nav-link {
-    color: rgba(253, 251, 247, 0.85) !important;
-    transition: color 0.3s ease;
-}
-.navbar a:hover, .navbar .nav-link:hover {
-    color: var(--color-gold, #C4A265) !important;
-}
-.cart-count {
-    background: var(--color-gold, #C4A265) !important;
-    color: #1E1E22 !important;
-    font-weight: 700;
-}
-
-/* ---------- 2. HERO — Cinematic ---------- */
-/* Hide floating emoji decorations */
-.floating-emoji, .hero-float, .float-element,
-[class*="floating"], [class*="float-icon"] {
+.floating-shape {
     display: none !important;
 }
 
+/* --- 2. HERO POLISH — Cinematic Dark Overlay --- */
 .hero {
     position: relative;
-    min-height: 85vh;
+    min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    overflow: hidden;
 }
-
-/* Dark cinematic overlay */
-.hero::before {
-    content: "";
+.hero::after {
+    content: '';
     position: absolute;
     inset: 0;
     background: linear-gradient(
         180deg,
-        rgba(30, 30, 34, 0.6) 0%,
-        rgba(45, 74, 55, 0.55) 50%,
-        rgba(30, 30, 34, 0.75) 100%
-    ) !important;
+        rgba(30, 30, 34, 0.55) 0%,
+        rgba(45, 74, 55, 0.45) 50%,
+        rgba(30, 30, 34, 0.65) 100%
+    );
     z-index: 1;
 }
-
-/* Hero content above overlay */
-.hero-content, .hero .container {
+.hero-content {
     position: relative;
     z-index: 2;
-}
-
-.hero h1 {
-    font-family: "Cormorant Garamond", "Fraunces", serif;
-    font-weight: 700;
-    font-size: clamp(2.8rem, 6vw, 5rem);
-    color: #FDFBF7 !important;
-    text-shadow: 0 2px 40px rgba(0,0,0,0.3);
-    line-height: 1.15;
-    letter-spacing: -0.02em;
-}
-.hero h1 em, .hero h1 i, .hero h1 .accent {
-    color: var(--color-gold, #C4A265) !important;
-    font-style: italic;
-}
-.hero p, .hero .hero-subtitle {
-    color: rgba(253, 251, 247, 0.8) !important;
-    font-size: clamp(1rem, 2vw, 1.25rem);
-    text-shadow: 0 1px 10px rgba(0,0,0,0.2);
-}
-
-/* CTA Button — Gold with glow */
-.hero .btn, .hero .cta-btn, .hero a[class*="btn"] {
-    background: linear-gradient(135deg, var(--color-gold, #C4A265), var(--color-amber, #D49055)) !important;
-    color: #1E1E22 !important;
-    font-weight: 700;
-    font-family: "Mulish", sans-serif;
-    padding: 1rem 2.5rem;
-    border-radius: 50px;
-    border: none;
-    font-size: 1rem;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    box-shadow:
-        0 4px 15px rgba(196, 162, 101, 0.4),
-        0 0 40px rgba(196, 162, 101, 0.1);
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    text-decoration: none;
-    display: inline-block;
-}
-.hero .btn:hover, .hero .cta-btn:hover, .hero a[class*="btn"]:hover {
-    transform: translateY(-2px) scale(1.03);
-    box-shadow:
-        0 8px 25px rgba(196, 162, 101, 0.5),
-        0 0 60px rgba(196, 162, 101, 0.15);
-}
-
-/* Scroll indicator */
-.scroll-indicator {
-    position: absolute;
-    bottom: 2rem;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 5;
-}
-@keyframes scrollPulse {
-    0%, 100% { opacity: 0.4; transform: translateY(0); }
-    50% { opacity: 1; transform: translateY(8px); }
-}
-.scroll-indicator .scroll-dot,
-.scroll-indicator span {
-    animation: scrollPulse 2s ease-in-out infinite;
-}
-
-/* ---------- 3. CATEGORY BAR — Premium Pills ---------- */
-.category-bar, .categories {
-    background: var(--bg-main, #F6F2EB) !important;
-    padding: 1.5rem 0;
-    border-bottom: 1px solid rgba(45, 74, 55, 0.08);
-}
-.category-bar .container {
     text-align: center;
+    max-width: 800px;
+    padding: 2rem;
 }
-.category-btn, .cat-btn, [class*="category"] button {
-    font-family: "Mulish", sans-serif;
-    font-weight: 600;
-    font-size: 0.85rem;
-    padding: 0.6rem 1.6rem;
-    border-radius: 50px;
-    border: 1.5px solid rgba(45, 74, 55, 0.15);
-    background: transparent;
-    color: var(--color-primary, #2D4A37);
-    cursor: pointer;
-    transition: all 0.3s ease;
-    letter-spacing: 0.02em;
+.hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 700;
+    font-size: clamp(3rem, 7vw, 5.5rem);
+    color: #FDFBF7;
+    line-height: 1.05;
+    margin-bottom: 0.3em;
+    text-shadow: 0 2px 30px rgba(0,0,0,0.3);
 }
-.category-btn:hover, .cat-btn:hover {
-    border-color: var(--color-gold, #C4A265);
-    color: var(--color-gold, #C4A265);
-    background: rgba(196, 162, 101, 0.06);
+.hero h1 em, .hero h1 i, .hero h1 .script {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    color: var(--color-secondary, #C4A265);
 }
-.category-btn.active, .cat-btn.active {
-    background: var(--color-primary, #2D4A37) !important;
-    color: #FDFBF7 !important;
-    border-color: var(--color-primary, #2D4A37) !important;
-    box-shadow: 0 2px 12px rgba(45, 74, 55, 0.2);
+.hero .subtitle, .hero .tagline {
+    font-family: 'Mulish', sans-serif;
+    font-weight: 300;
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    color: rgba(253, 251, 247, 0.85);
+    letter-spacing: 0.04em;
+    margin-bottom: 0.5em;
+}
+.hero .handwritten {
+    font-family: 'Caveat', cursive;
+    font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+    color: var(--color-secondary, #C4A265);
+    margin: 1rem 0 2rem;
 }
 
-/* ---------- 4. SECTION TITLES — Centered + Gold Underline ---------- */
-.section-title,
-.products > .container > h2,
-.products h2,
-.about h2,
-.contact h2 {
-    font-family: "Cormorant Garamond", serif !important;
+/* Hero CTA — Gold Shimmer */
+.hero .btn, .hero .cta-btn, .hero a.btn {
+    background: linear-gradient(135deg, var(--color-secondary, #C4A265), var(--color-accent, #D49055));
+    color: #1E1E22;
+    font-family: 'Mulish', sans-serif;
+    font-weight: 700;
+    font-size: 1.05rem;
+    padding: 1rem 2.8rem;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+.hero .btn:hover, .hero .cta-btn:hover {
+    transform: translateY(-2px);
+    box-shadow:
+        0 8px 25px rgba(196, 162, 101, 0.4),
+        0 0 40px rgba(196, 162, 101, 0.15);
+}
+.hero .btn::before, .hero .cta-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,0.3),
+        transparent
+    );
+    transition: left 0.6s ease;
+}
+.hero .btn:hover::before, .hero .cta-btn:hover::before {
+    left: 100%;
+}
+
+/* --- 3. SECTION TITLES — Centered + Gold Ornament --- */
+.section-title, .products h2, .about h2, .contact h2 {
+    font-family: 'Cormorant Garamond', serif;
     font-weight: 700;
     font-size: clamp(2rem, 4vw, 3rem);
     color: var(--color-primary, #2D4A37);
-    text-align: center !important;
-    display: block !important;
-    width: 100%;
+    text-align: center;
     position: relative;
-    padding-bottom: 1.2rem;
+    padding-bottom: 1rem;
     margin-bottom: 0.5rem;
 }
-.section-title::after,
-.products h2::after,
-.contact h2::after {
-    content: '' !important;
-    position: absolute !important;
-    bottom: 0 !important;
-    left: 50% !important;
-    transform: translateX(-50%) !important;
-    width: 60px !important;
-    height: 3px !important;
-    background: linear-gradient(90deg, transparent, var(--color-gold, #C4A265), transparent) !important;
+.section-title::after, .products h2::after, .contact h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--color-secondary, #C4A265), transparent);
     border-radius: 2px;
-    display: block !important;
 }
-.section-subtitle, .products .section-subtitle {
-    text-align: center !important;
-    font-family: "Mulish", sans-serif;
+.section-subtitle {
+    text-align: center;
+    font-family: 'Mulish', sans-serif;
     font-weight: 300;
     color: var(--text-secondary, #6B7B6E);
     font-size: 1.1rem;
     margin-bottom: 2.5rem;
-    display: block;
-    width: 100%;
 }
+
+/* --- 4. DARK LUXURY ABOUT SECTION --- */
+.about {
+    background: linear-gradient(170deg, #1E1E22 0%, #2D4A37 100%) !important;
+    color: #FDFBF7;
+    padding: 5rem 0;
+    position: relative;
+}
+.about h2, .about .section-title {
+    color: var(--color-secondary, #C4A265) !important;
+}
+.about h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--color-secondary, #C4A265), transparent);
+    border-radius: 2px;
+}
+.about p, .about .about-text {
+    color: rgba(253, 251, 247, 0.85);
+    font-family: 'Mulish', sans-serif;
+    font-weight: 300;
+    line-height: 1.8;
+}
+.about .about-kicker, .about .kicker {
+    color: var(--color-secondary, #C4A265);
+    font-family: 'Caveat', cursive;
+    font-size: 1.2rem;
+}
+/* About feature badges on dark bg */
+.about .feature, .about .badge, .about .about-features .feature-item {
+    background: rgba(253, 251, 247, 0.08);
+    border: 1px solid rgba(196, 162, 101, 0.2);
+    color: #FDFBF7;
+    backdrop-filter: blur(4px);
+}
+.about .feature:hover, .about .about-features .feature-item:hover {
+    background: rgba(253, 251, 247, 0.12);
+    border-color: rgba(196, 162, 101, 0.4);
+}
+/* About image — gold border glow */
+.about img, .about .about-image img {
+    border-radius: 16px;
+    box-shadow:
+        0 20px 60px rgba(0,0,0,0.4),
+        0 0 0 1px rgba(196, 162, 101, 0.2);
+}
+
+/* --- 5. SECTION CURVE SEPARATORS --- */
+.products {
+    position: relative;
+    padding-top: 4rem;
+}
+.products::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: 0;
+    right: 0;
+    height: 60px;
+    background: linear-gradient(180deg, var(--bg-main, #F6F2EB), transparent);
+    z-index: 1;
+}
+
+.about::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 80px;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 80'%3E%3Cpath fill='%23EDE6D8' d='M0,0 C360,80 1080,0 1440,60 L1440,0 L0,0 Z'/%3E%3C/svg%3E") no-repeat center;
+    background-size: cover;
+    z-index: 1;
+}
+.about::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 80px;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 80'%3E%3Cpath fill='%23F6F2EB' d='M0,80 C360,0 1080,80 1440,20 L1440,80 L0,80 Z'/%3E%3C/svg%3E") no-repeat center;
+    background-size: cover;
+    z-index: 1;
+}
+
+/* --- 6. PRODUCT CARDS — Extra Polish --- */
+.product-card {
+    border-radius: 16px;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    border: 1px solid rgba(196, 162, 101, 0.08);
+}
+.product-card:hover {
+    transform: translateY(-8px);
+    box-shadow:
+        0 20px 40px rgba(45, 74, 55, 0.12),
+        0 0 0 1px rgba(196, 162, 101, 0.15);
+}
+.product-card .product-info {
+    padding: 1.5rem;
+}
+.product-card .product-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+    font-size: 1.3rem;
+    color: var(--color-primary, #2D4A37);
+}
+.product-card .product-price {
+    font-family: 'Mulish', sans-serif;
+    font-weight: 800;
+    font-size: 1.4rem;
+    color: var(--color-accent, #D49055);
+}
+
+/* Add to cart button polish */
+.product-card .add-to-cart, .product-card .btn-add {
+    background: var(--color-primary, #2D4A37);
+    color: #FDFBF7;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-size: 1.3rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.product-card .add-to-cart:hover, .product-card .btn-add:hover {
+    background: var(--color-secondary, #C4A265);
+    transform: scale(1.1);
+    box-shadow: 0 4px 15px rgba(196, 162, 101, 0.4);
+}
+
+/* --- 7. CONTACT SECTION POLISH --- */
+.contact {
+    background: var(--bg-warm, #EDE6D8);
+    padding: 5rem 0;
+}
+.contact h2 {
+    color: var(--color-primary, #2D4A37);
+}
+.contact .contact-card {
+    background: #FDFBF7;
+    border-radius: 16px;
+    border: 1px solid rgba(196, 162, 101, 0.1);
+    transition: all 0.3s ease;
+}
+.contact .contact-card:hover {
+    box-shadow: 0 8px 30px rgba(45, 74, 55, 0.08);
+}
+
+/* Hours table polish */
+.contact .hours-card, .contact .godziny {
+    background: var(--color-primary, #2D4A37);
+    color: #FDFBF7;
+    border-radius: 16px;
+    padding: 2rem;
+}
+.contact .hours-card h3, .contact .godziny h3 {
+    color: var(--color-secondary, #C4A265);
+    font-family: 'Cormorant Garamond', serif;
+}
+
+/* --- 8. FOOTER — Dark Premium --- */
+footer, .footer {
+    background: #151518 !important;
+    color: rgba(253, 251, 247, 0.6);
+    padding: 3rem 0 2rem;
+}
+footer a, .footer a {
+    color: rgba(253, 251, 247, 0.6);
+    transition: color 0.3s ease;
+}
+footer a:hover, .footer a:hover {
+    color: var(--color-secondary, #C4A265);
+}
+footer h3, .footer h3, footer h4, .footer h4 {
+    color: var(--color-secondary, #C4A265);
+    font-family: 'Cormorant Garamond', serif;
+}
+footer::before, .footer::before {
+    content: '';
+    display: block;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--color-secondary, #C4A265), transparent);
+    margin-bottom: 2rem;
+}
+
+/* --- 9. NAVBAR POLISH --- */
+.navbar, nav {
+    backdrop-filter: blur(12px);
+    background: rgba(253, 251, 247, 0.92) !important;
+    border-bottom: 1px solid rgba(196, 162, 101, 0.1);
+}
+
+/* --- 10. BADGES (BESTSELLER, NOWOŚĆ) --- */
+.badge, .product-badge {
+    font-family: 'Mulish', sans-serif;
+    font-weight: 700;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.35rem 0.9rem;
+    border-radius: 50px;
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    z-index: 5;
+}
+
+/* --- 11. GLOBAL SMOOTH SCROLL --- */
+html {
+    scroll-behavior: smooth;
+}
+
+/* --- 12. SELECTION COLOR --- */
+::selection {
+    background: var(--color-secondary, #C4A265);
+    color: #1E1E22;
+}
+
+
+/* ==========================================================
+   FINAL POLISH — Force section centering + cleanup
+   ========================================================== */
+
+/* Force ALL section titles centered */
+.section-title,
+section h2,
+.products .section-title,
+.about .section-title,
+.about h2,
+.contact .section-title,
+.contact h2 {
+    text-align: center !important;
+}
+
+/* About section title on dark bg */
+.about .section-title,
+.about h2 {
+    color: var(--color-secondary, #C4A265) !important;
+    position: relative;
+    padding-bottom: 1rem;
+}
+
+/* About kicker centered */
+.about .kicker,
+.about .about-kicker,
+.about .section-subtitle {
+    text-align: center !important;
+    color: rgba(253, 251, 247, 0.6) !important;
+}
+
+/* Kontakt title gold underline fix */
+.contact .section-title::after,
+.contact h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--color-secondary, #C4A265), transparent);
+    border-radius: 2px;
+}
+
+/* Contact cards — subtle depth */
+.contact-card {
+    background: #FDFBF7 !important;
+    border-radius: 16px !important;
+    border: 1px solid rgba(196, 162, 101, 0.12) !important;
+    box-shadow: 0 4px 20px rgba(45, 74, 55, 0.06) !important;
+    transition: all 0.3s ease !important;
+}
+.contact-card:hover {
+    box-shadow: 0 8px 30px rgba(45, 74, 55, 0.1) !important;
+    transform: translateY(-2px) !important;
+}
+
+/* Hours card — deep forest green */
+.hours-card {
+    background: var(--color-primary, #2D4A37) !important;
+    color: #FDFBF7 !important;
+    border-radius: 16px !important;
+    padding: 2.5rem !important;
+}
+.hours-card h2, .hours-card h3 {
+    color: var(--color-secondary, #C4A265) !important;
+    font-family: 'Cormorant Garamond', serif !important;
+}
+.hours-table td, .hours-table th,
+.hours-card td, .hours-card th {
+    color: rgba(253, 251, 247, 0.85) !important;
+    border-bottom: 1px solid rgba(253, 251, 247, 0.1) !important;
+}
+
+/* Product category filter pills polish */
+.category-filters, .product-filters, .filter-pills {
+    display: flex;
+    justify-content: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+}
+.category-filter, .filter-pill, .filter-btn {
+    font-family: 'Mulish', sans-serif;
+    font-weight: 600;
+    font-size: 0.85rem;
+    padding: 0.6rem 1.5rem;
+    border-radius: 50px;
+    border: 1px solid rgba(45, 74, 55, 0.15);
+    background: transparent;
+    color: var(--color-primary, #2D4A37);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: capitalize;
+}
+.category-filter:hover, .filter-pill:hover, .filter-btn:hover {
+    background: var(--color-primary, #2D4A37);
+    color: #FDFBF7;
+    border-color: var(--color-primary, #2D4A37);
+}
+.category-filter.active, .filter-pill.active, .filter-btn.active {
+    background: var(--color-primary, #2D4A37);
+    color: #FDFBF7;
+    border-color: var(--color-primary, #2D4A37);
+    box-shadow: 0 4px 12px rgba(45, 74, 55, 0.2);
+}
+
+/* Gold horizontal rule divider */
+hr, .divider {
+    border: none;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--color-secondary, #C4A265), transparent);
+    margin: 3rem auto;
+    max-width: 200px;
+}
+
+/* Smooth page transitions */
+section {
+    position: relative;
+}
+
+
+/* ==========================================================
+   CRITICAL OVERRIDES — Title centering + About dark bg
+   ========================================================== */
+
+/* Fix: .section-title was inline-block so it left-aligned in parent.
+   Force block display and center alignment on parent containers */
+.section-title,
+.products .section-title,
+.about .section-title,
+.contact .section-title {
+    display: block !important;
+    text-align: center !important;
+    width: 100% !important;
+}
+
+/* Ensure parent containers center their children */
 .products .container,
 .contact .container {
     text-align: center;
 }
-.products .container > h2 + p,
-.products .container > .section-title + p {
-    text-align: center;
-}
 
-/* ---------- 5. PRODUCT CARDS — Elevated Premium ---------- */
-.product-card {
-    background: #FDFBF7 !important;
-    border-radius: 16px !important;
-    border: 1px solid rgba(45, 74, 55, 0.06) !important;
-    box-shadow:
-        0 1px 3px rgba(0,0,0,0.04),
-        0 8px 24px rgba(45, 74, 55, 0.06) !important;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
-    overflow: hidden;
-    position: relative;
-    text-align: left;
-}
-.product-card:hover {
-    transform: translateY(-6px) !important;
-    box-shadow:
-        0 12px 40px rgba(45, 74, 55, 0.12),
-        0 0 0 1px rgba(196, 162, 101, 0.15) !important;
-}
-
-/* Product image area */
-.product-card .product-img,
-.product-card .card-img {
-    border-radius: 12px 12px 0 0;
-    overflow: hidden;
-    position: relative;
-}
-.product-card .product-img img,
-.product-card .card-img img {
-    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-}
-.product-card:hover .product-img img,
-.product-card:hover .card-img img {
-    transform: scale(1.05);
-}
-
-/* Product card emoji (as placeholder for images) */
-.product-card .product-emoji {
-    font-size: 3.5rem;
-    display: block;
-    text-align: center;
-    padding: 2rem 0 1rem;
-    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.08));
-    transition: transform 0.4s ease;
-}
-.product-card:hover .product-emoji {
-    transform: scale(1.1) rotate(-3deg);
-}
-
-/* Card body */
-.product-card .card-body,
-.product-card .product-info {
-    padding: 1.2rem 1.4rem 1.4rem;
-}
-.product-card h3, .product-card .product-name {
-    font-family: "Cormorant Garamond", serif;
-    font-weight: 700;
-    font-size: 1.15rem;
-    color: var(--color-primary, #2D4A37);
-    margin-bottom: 0.4rem;
-}
-.product-card .product-desc {
-    font-family: "Mulish", sans-serif;
-    font-size: 0.85rem;
-    color: var(--text-secondary, #6B7B6E);
-    line-height: 1.5;
-}
-
-/* Price */
-.product-card .price, .product-card .product-price {
-    font-family: "Cormorant Garamond", serif;
-    font-weight: 700;
-    font-size: 1.3rem;
-    color: var(--color-primary, #2D4A37);
-}
-
-/* Add to cart button */
-.product-card .add-to-cart,
-.product-card .btn-add {
-    background: var(--color-primary, #2D4A37) !important;
-    color: #FDFBF7 !important;
-    border: none;
-    border-radius: 50px;
-    padding: 0.55rem 1.3rem;
-    font-family: "Mulish", sans-serif;
-    font-weight: 600;
-    font-size: 0.8rem;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    letter-spacing: 0.02em;
-}
-.product-card .add-to-cart:hover,
-.product-card .btn-add:hover {
-    background: var(--color-gold, #C4A265) !important;
-    color: #1E1E22 !important;
-    transform: scale(1.05);
-    box-shadow: 0 4px 15px rgba(196, 162, 101, 0.3);
-}
-
-/* Badges */
-.badge, .product-badge, [class*="badge"] {
-    font-family: "Mulish", sans-serif;
-    font-weight: 700;
-    font-size: 0.7rem;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    padding: 0.3rem 0.8rem;
-    border-radius: 50px;
-    position: absolute;
-    top: 0.8rem;
-    right: 0.8rem;
-    z-index: 2;
-}
-.badge-bestseller, .badge[class*="best"] {
-    background: linear-gradient(135deg, var(--color-gold, #C4A265), var(--color-amber, #D49055)) !important;
-    color: #1E1E22 !important;
-}
-.badge-new, .badge[class*="now"] {
-    background: var(--color-primary, #2D4A37) !important;
-    color: #FDFBF7 !important;
-}
-
-/* ---------- 6. ABOUT SECTION — Dark Luxury ---------- */
-section.about, .about {
-    background: linear-gradient(170deg, #1E1E22 0%, #2a3d30 60%, #2D4A37 100%) !important;
-    color: #FDFBF7 !important;
-    padding: 6rem 0 !important;
-    position: relative;
-    overflow: hidden;
-}
-/* Kill the original cream ::before blob */
-.about::before {
-    background: none !important;
-    width: 0 !important;
-    height: 0 !important;
-    display: none !important;
+/* About section — nuke the original ::before gold circle blob that was covering dark bg */
+section.about::before {
     content: none !important;
+    display: none !important;
 }
-/* Subtle top wave separator */
-.about::after {
-    content: "" !important;
-    position: absolute !important;
-    top: -1px;
+
+/* About section dark background — highest specificity override */
+section#about.about,
+section.about,
+#about {
+    background: linear-gradient(170deg, #1E1E22 0%, #2D4A37 100%) !important;
+    color: #FDFBF7 !important;
+}
+
+/* About curve separator — use ::after instead since ::before is nuked */
+section.about::after {
+    content: '';
+    position: absolute;
+    top: 0;
     left: 0;
     right: 0;
     height: 80px;
@@ -2849,197 +3016,48 @@ section.about, .about {
     z-index: 1;
     pointer-events: none;
 }
-/* Ambient gold glow */
-.about .container::before {
-    content: "";
-    position: absolute;
-    top: 20%;
-    right: -10%;
-    width: 500px;
-    height: 500px;
-    background: radial-gradient(circle, rgba(196, 162, 101, 0.06) 0%, transparent 70%);
-    pointer-events: none;
-}
 
-.about h2, .about .section-title {
-    color: var(--color-gold, #C4A265) !important;
+/* About text elements must be light on dark */
+section.about .about-text p,
+section.about .about-handwritten,
+section.about p {
+    color: rgba(253, 251, 247, 0.85) !important;
+}
+section.about .about-handwritten {
+    color: var(--color-secondary, #C4A265) !important;
+}
+section.about h2,
+section.about .section-title {
+    color: var(--color-secondary, #C4A265) !important;
+    display: block !important;
     text-align: left !important;
 }
-.about h2::after, .about .section-title::after {
-    left: 0 !important;
-    transform: none !important;
-    background: linear-gradient(90deg, var(--color-gold, #C4A265), transparent) !important;
-}
-.about .about-handwritten, .about .kicker {
-    color: var(--color-gold, #C4A265) !important;
-}
-.about p, .about .about-text p {
-    color: rgba(253, 251, 247, 0.82) !important;
-    line-height: 1.85;
-}
 
-/* About feature tags */
-.about .feature, .about .feature-tag,
-.about .about-features .feature-item,
-.about-features span {
-    background: rgba(253, 251, 247, 0.07) !important;
+/* About feature badges — glass on dark */
+section.about .feature {
+    background: rgba(253, 251, 247, 0.08) !important;
     border: 1px solid rgba(196, 162, 101, 0.2) !important;
     color: #FDFBF7 !important;
-    backdrop-filter: blur(8px);
+    backdrop-filter: blur(4px);
     border-radius: 50px;
-    padding: 0.5rem 1.2rem;
-    font-size: 0.85rem;
-    transition: all 0.3s ease;
+    padding: 0.6rem 1.4rem;
 }
-.about .feature:hover, .about .feature-tag:hover,
-.about .about-features .feature-item:hover {
-    background: rgba(253, 251, 247, 0.13) !important;
-    border-color: rgba(196, 162, 101, 0.45) !important;
-    transform: translateY(-2px);
+section.about .feature:hover {
+    background: rgba(253, 251, 247, 0.14) !important;
+    border-color: rgba(196, 162, 101, 0.4) !important;
+}
+section.about .feature-icon {
+    filter: brightness(1.2);
 }
 
-/* About image — golden border glow */
-.about .about-img-wrapper img, .about img {
+/* About image enhanced glow on dark bg */
+section.about .about-img-wrapper img {
     border-radius: 16px !important;
     box-shadow:
-        0 25px 60px rgba(0,0,0,0.5),
-        0 0 0 1px rgba(196, 162, 101, 0.2),
-        0 0 100px rgba(196, 162, 101, 0.06) !important;
-    transition: all 0.5s ease;
+        0 20px 60px rgba(0,0,0,0.5),
+        0 0 0 1px rgba(196, 162, 101, 0.25),
+        0 0 80px rgba(196, 162, 101, 0.08) !important;
 }
-.about .about-img-wrapper:hover img, .about img:hover {
-    box-shadow:
-        0 30px 70px rgba(0,0,0,0.55),
-        0 0 0 1px rgba(196, 162, 101, 0.35),
-        0 0 120px rgba(196, 162, 101, 0.1) !important;
-}
-.about .about-img-wrapper::after {
+section.about .about-img-wrapper::after {
     display: none !important;
-}
-
-/* ---------- 7. CONTACT — Clean Elegance ---------- */
-.contact {
-    background: var(--color-cream, #EDE6D8) !important;
-    padding: 5rem 0;
-}
-.contact h2 {
-    color: var(--color-primary, #2D4A37) !important;
-}
-.contact-card, .contact-info, .contact .info-card {
-    background: #FDFBF7;
-    border-radius: 16px;
-    padding: 2rem;
-    box-shadow: 0 4px 20px rgba(45, 74, 55, 0.06);
-    border: 1px solid rgba(45, 74, 55, 0.06);
-}
-.hours-card, .contact .hours {
-    background: var(--color-primary, #2D4A37) !important;
-    color: #FDFBF7 !important;
-    border-radius: 16px;
-    padding: 2rem;
-    box-shadow: 0 8px 30px rgba(45, 74, 55, 0.2);
-}
-.hours-card h3, .contact .hours h3 {
-    color: var(--color-gold, #C4A265) !important;
-    font-family: "Cormorant Garamond", serif;
-}
-.hours-card td, .hours-card th,
-.contact .hours td, .contact .hours th {
-    color: rgba(253, 251, 247, 0.85) !important;
-    padding: 0.4rem 0;
-    border: none;
-}
-
-/* ---------- 8. FOOTER — Dark Premium ---------- */
-footer {
-    background: #1E1E22 !important;
-    color: rgba(253, 251, 247, 0.7);
-    border-top: 1px solid rgba(196, 162, 101, 0.1);
-}
-footer a {
-    color: rgba(253, 251, 247, 0.7) !important;
-    transition: color 0.3s ease;
-}
-footer a:hover {
-    color: var(--color-gold, #C4A265) !important;
-}
-footer .logo, footer h3, footer h4 {
-    color: #FDFBF7 !important;
-}
-
-/* ---------- 9. SECTION SEPARATORS ---------- */
-.products {
-    position: relative;
-}
-.products::before {
-    content: "";
-    position: absolute;
-    top: -1px;
-    left: 0;
-    right: 0;
-    height: 40px;
-    background: linear-gradient(180deg, var(--bg-main, #F6F2EB), transparent);
-    z-index: 1;
-    pointer-events: none;
-}
-
-/* ---------- 10. SCROLL REVEAL ANIMATIONS ---------- */
-.reveal-on-scroll {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
-}
-.reveal-on-scroll.revealed, .reveal-on-scroll.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* Stagger children */
-.products-grid .product-card:nth-child(1) { transition-delay: 0.05s; }
-.products-grid .product-card:nth-child(2) { transition-delay: 0.1s; }
-.products-grid .product-card:nth-child(3) { transition-delay: 0.15s; }
-.products-grid .product-card:nth-child(4) { transition-delay: 0.2s; }
-.products-grid .product-card:nth-child(5) { transition-delay: 0.25s; }
-.products-grid .product-card:nth-child(6) { transition-delay: 0.3s; }
-
-/* ---------- 11. CART SIDEBAR ---------- */
-.cart-sidebar, .cart-panel {
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-}
-
-/* ---------- 12. MOBILE RESPONSIVE POLISH ---------- */
-@media (max-width: 768px) {
-    .hero {
-        min-height: 70vh;
-    }
-    .hero h1 {
-        font-size: clamp(2rem, 8vw, 3rem);
-    }
-    .about {
-        padding: 4rem 0 !important;
-    }
-    .about .about-content {
-        grid-template-columns: 1fr !important;
-        gap: 2rem;
-    }
-    .about h2, .about .section-title {
-        text-align: center !important;
-    }
-    .about h2::after, .about .section-title::after {
-        left: 50% !important;
-        transform: translateX(-50%) !important;
-    }
-    .products-grid {
-        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-        gap: 1rem;
-    }
-}
-
-/* ---------- 13. PREFERS-REDUCED-MOTION ---------- */
-@media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        transition-duration: 0.01ms !important;
-    }
 }
