@@ -151,14 +151,14 @@ a {
     right: 0;
     z-index: 1000;
     height: var(--nav-height);
-    transition: all var(--transition-medium);
+    transition: color 0.3s var(--ease-smooth), background 0.3s var(--ease-smooth);
     background: transparent;
 }
 
 .navbar.scrolled {
     background: rgba(254, 252, 249, 0.82);
-    backdrop-filter: blur(20px) saturate(1.8);
-    -webkit-backdrop-filter: blur(20px) saturate(1.8);
+    backdrop-filter: blur(10px) saturate(1.4);
+    -webkit-backdrop-filter: blur(10px) saturate(1.4);
     box-shadow: 0 1px 30px rgba(45, 74, 55, 0.08);
 }
 
@@ -435,7 +435,7 @@ a {
     border: none;
     border-radius: var(--radius-full);
     cursor: pointer;
-    transition: all var(--transition-medium);
+    transition: color 0.3s var(--ease-smooth), background 0.3s var(--ease-smooth);
     text-decoration: none;
     line-height: 1;
 }
@@ -483,7 +483,7 @@ a {
     height: clamp(200px, 30vw, 400px);
     top: -5%;
     left: -8%;
-    animation: floatSlow 20s ease-in-out infinite;
+    /* floatSlow removed for perf */
 }
 
 .shape-2 {
@@ -492,7 +492,7 @@ a {
     bottom: 10%;
     right: -5%;
     background: var(--color-rose);
-    animation: floatSlow 25s ease-in-out infinite reverse;
+    /* floatSlow removed for perf */
 }
 
 .shape-3 {
@@ -500,7 +500,7 @@ a {
     height: clamp(100px, 15vw, 200px);
     top: 40%;
     left: 60%;
-    animation: floatSlow 18s ease-in-out infinite 3s;
+    /* floatSlow removed for perf */
 }
 
 @keyframes floatSlow {
@@ -519,12 +519,12 @@ a {
     filter: drop-shadow(0 4px 10px rgba(0,0,0,0.2));
 }
 
-.emoji-1 { top: 15%; left: 8%; animation: floatEmoji 12s ease-in-out infinite; }
-.emoji-2 { top: 25%; right: 12%; animation: floatEmoji 15s ease-in-out infinite 2s; }
-.emoji-3 { bottom: 30%; left: 15%; animation: floatEmoji 10s ease-in-out infinite 1s; }
-.emoji-4 { top: 60%; right: 8%; animation: floatEmoji 14s ease-in-out infinite 3s; }
-.emoji-5 { bottom: 20%; right: 25%; animation: floatEmoji 11s ease-in-out infinite 4s; }
-.emoji-6 { top: 10%; left: 45%; animation: floatEmoji 13s ease-in-out infinite 1.5s; }
+.emoji-1 { top: 15%; left: 8%; /* animation removed for perf */ }
+.emoji-2 { top: 25%; right: 12%; /* animation removed for perf */ }
+.emoji-3 { bottom: 30%; left: 15%; /* animation removed for perf */ }
+.emoji-4 { top: 60%; right: 8%; /* animation removed for perf */ }
+.emoji-5 { bottom: 20%; right: 25%; /* animation removed for perf */ }
+.emoji-6 { top: 10%; left: 45%; /* animation removed for perf */ }
 
 @keyframes floatEmoji {
     0%, 100% { transform: translateY(0) rotate(0deg); }
@@ -562,7 +562,7 @@ a {
     border-right: 2px solid rgba(255,255,255,0.4);
     border-bottom: 2px solid rgba(255,255,255,0.4);
     transform: rotate(45deg);
-    animation: scrollBounce 2s ease-in-out infinite;
+    /* scrollBounce removed for perf */
 }
 
 @keyframes scrollIndicatorIn {
@@ -648,8 +648,8 @@ a {
     top: var(--nav-height);
     z-index: 50;
     background: rgba(250, 246, 240, 0.9);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     padding: 0.8rem 0;
     border-bottom: 1px solid rgba(45, 74, 55, 0.06);
     transition: transform 0.3s var(--ease-smooth), opacity 0.3s var(--ease-smooth);
@@ -687,7 +687,7 @@ a {
     font-weight: 500;
     color: var(--color-text-light);
     cursor: pointer;
-    transition: all var(--transition-fast);
+    transition: color 0.2s var(--ease-smooth), background 0.2s var(--ease-smooth);
     white-space: nowrap;
     flex-shrink: 0;
 }
@@ -1466,7 +1466,7 @@ footer .container {
     font-size: 1rem;
     font-weight: 700;
     cursor: pointer;
-    transition: all var(--transition-fast);
+    transition: color 0.2s var(--ease-smooth), background 0.2s var(--ease-smooth);
     box-shadow: var(--shadow-gold-glow);
 }
 
@@ -1587,7 +1587,7 @@ footer .container {
     --color-primary: var(--color-forest);
     --color-secondary: var(--color-gold);
     --color-accent: var(--color-amber);
-    transition: all var(--transition-fast);
+    transition: color 0.2s var(--ease-smooth), background 0.2s var(--ease-smooth);
 }
 
 .step-dot.active {
@@ -1945,7 +1945,7 @@ footer .container {
 .add-to-cart-btn {
     position: relative;
     overflow: hidden;
-    transition: all 0.3s var(--ease-out) !important;
+    transition: opacity 0.3s var(--ease-out);
 }
 
 .add-to-cart-btn::after {
@@ -2036,7 +2036,7 @@ footer .container {
     flex-direction: column;
     align-items: center;
     gap: 0.5rem;
-    animation: scrollFloat 2s ease-in-out infinite;
+    /* scrollFloat removed for perf */
 }
 
 .scroll-indicator .mouse {
@@ -2057,7 +2057,7 @@ footer .container {
     height: 8px;
     background: var(--color-secondary);
     border-radius: 2px;
-    animation: mouseScroll 1.8s ease-in-out infinite;
+    /* mouseScroll removed for perf */
 }
 
 @keyframes mouseScroll {
@@ -2086,7 +2086,7 @@ footer .container {
     width: 200%;
     height: 200%;
     background: conic-gradient(from 0deg, transparent, rgba(196, 162, 101, 0.3), transparent);
-    animation: btnRotate 3s linear infinite;
+    /* btnRotate removed for perf */
     opacity: 0;
     transition: opacity 0.3s;
 }
@@ -2111,7 +2111,7 @@ footer .container {
 }
 
 .about-features .feature-tag {
-    transition: all 0.3s var(--ease-out);
+    transition: opacity 0.3s var(--ease-smooth);
 }
 
 .about-features .feature-tag:hover {
@@ -2210,7 +2210,7 @@ footer .container {
    ============================================================ */
 
 .contact-card {
-    transition: all 0.3s var(--ease-out);
+    transition: opacity 0.3s var(--ease-smooth);
 }
 
 .contact-card:hover {
@@ -2219,7 +2219,7 @@ footer .container {
 }
 
 .contact-card .contact-icon {
-    transition: all 0.3s var(--ease-out);
+    transition: opacity 0.3s var(--ease-smooth);
 }
 
 .contact-card:hover .contact-icon {
@@ -2451,8 +2451,8 @@ html {
 
 /* ---------- 1. NAVBAR — Frosted Glass ---------- */
 .navbar {
-    backdrop-filter: blur(20px) saturate(180%);
-    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    backdrop-filter: blur(10px) saturate(140%);
+    -webkit-backdrop-filter: blur(10px) saturate(140%);
     background: rgba(30, 30, 34, 0.85) !important;
     border-bottom: 1px solid rgba(196, 162, 101, 0.15);
     box-shadow: 0 4px 30px rgba(0,0,0,0.12);
@@ -2543,7 +2543,7 @@ html {
     box-shadow:
         0 4px 15px rgba(196, 162, 101, 0.4),
         0 0 40px rgba(196, 162, 101, 0.1);
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: opacity 0.3s ease;
     text-decoration: none;
     display: inline-block;
 }
@@ -2568,7 +2568,7 @@ html {
 }
 .scroll-indicator .scroll-dot,
 .scroll-indicator span {
-    animation: scrollPulse 2s ease-in-out infinite;
+    /* scrollPulse removed for perf */
 }
 
 /* ---------- 3. CATEGORY BAR — Premium Pills ---------- */
@@ -2590,7 +2590,7 @@ html {
     background: transparent;
     color: var(--color-primary, #2D4A37);
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: opacity 0.3s ease;
     letter-spacing: 0.02em;
 }
 .category-btn:hover, .cat-btn:hover {
@@ -2749,7 +2749,7 @@ section.about, .about {
     border-radius: 50px;
     padding: 0.5rem 1.2rem;
     font-size: 0.85rem;
-    transition: all 0.3s ease;
+    transition: opacity 0.3s ease;
 }
 .about .feature:hover, .about .feature-tag:hover,
 .about .about-features .feature-item:hover {
@@ -2765,7 +2765,7 @@ section.about, .about {
         0 25px 60px rgba(0,0,0,0.5),
         0 0 0 1px rgba(196, 162, 101, 0.2),
         0 0 100px rgba(196, 162, 101, 0.06) !important;
-    transition: all 0.5s ease;
+    transition: opacity 0.4s ease;
 }
 .about .about-img-wrapper:hover img, .about img:hover {
     box-shadow:
