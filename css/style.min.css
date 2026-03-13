@@ -2278,7 +2278,7 @@ footer .container {
 
     /* Hero Mobile */
     .hero {
-        min-height: 100svh;
+        min-height: 85svh;
     }
 
     .hero-content {
@@ -2304,6 +2304,13 @@ footer .container {
         justify-content: flex-start;
         flex-wrap: nowrap;
         gap: 0.4rem;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        padding-bottom: 4px;
+    }
+    .category-pills::-webkit-scrollbar {
+        display: none;
     }
 
     .category-pill {
@@ -2317,7 +2324,7 @@ footer .container {
     }
 
     .products-grid {
-        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+        grid-template-columns: repeat(2, 1fr);
         gap: 1rem;
     }
 
@@ -2380,10 +2387,45 @@ footer .container {
     }
 }
 
-/* Small phones */
-@media (max-width: 400px) {
+/* Small phones (up to 480px) */
+@media (max-width: 480px) {
     .products-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+        padding: 0 0.25rem;
+    }
+    .product-card .product-image {
+        height: 130px;
+    }
+
+    .product-card .product-info {
+        padding: 0.6rem 0.6rem 0.5rem;
+    }
+
+    .product-card .product-name {
+        font-size: 0.95rem;
+        margin-bottom: 0.2rem;
+    }
+
+    .product-card .product-desc {
+        font-size: 0.72rem;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    .product-card .product-footer {
+        padding: 0.45rem 0.6rem;
+    }
+
+    .product-card .product-price {
+        font-size: 0.95rem;
+    }
+
+    .product-card .btn-add {
+        padding: 0.35rem 0.6rem;
+        font-size: 0.7rem;
     }
 
     .hero-title {
@@ -2877,7 +2919,7 @@ footer .logo, footer h3, footer h4 {
         font-size: clamp(2rem, 8vw, 3rem);
     }
     .about {
-        padding: 4rem 0 !important;
+        padding: 3rem 0 !important;
     }
     .about .about-content {
         grid-template-columns: 1fr !important;
@@ -2889,10 +2931,6 @@ footer .logo, footer h3, footer h4 {
     .about h2::after, .about .section-title::after {
         left: 50% !important;
         transform: translateX(-50%) !important;
-    }
-    .products-grid {
-        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-        gap: 1rem;
     }
 }
 
@@ -3107,4 +3145,53 @@ footer .logo, footer h3, footer h4 {
     color: rgba(255,255,255,0.3);
     box-shadow: none;
     cursor: not-allowed;
+}
+
+/* ===== MOBILE POLISH (Sweet Spot 2026) ===== */
+@media (max-width: 768px) {
+    /* Product card - lepsze proporcje na mobile */
+    .product-card .product-body {
+        padding: 0.9rem 1rem 0;
+    }
+    .product-card .product-footer {
+        padding: 0 1rem 1rem;
+    }
+    .product-card .product-name {
+        font-size: 1rem;
+    }
+    .product-card .product-description {
+        font-size: 0.8rem;
+    }
+    .product-card .product-price {
+        font-size: 1.15rem;
+    }
+    .product-card .add-to-cart-btn,
+    .product-card .add-to-cart {
+        padding: 0.5rem 0.9rem;
+        font-size: 0.78rem;
+    }
+    /* Categories scroll hint */
+    .categories .container {
+        overflow: visible;
+    }
+    /* Cart sidebar pełna szerokość na mobile */
+    .cart-sidebar {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+    /* Modal pełna szerokość */
+    .modal {
+        max-width: 100% !important;
+    }
+    /* Footer - mniejszy padding */
+    footer, .footer {
+        padding: 2rem 0 1rem !important;
+    }
+    /* Contact items lepsze na mobile */
+    .contact-item {
+        padding: 1.2rem !important;
+    }
+    .contact-item h3 {
+        font-size: 1rem;
+    }
 }
