@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<title>Sweet Spot Admin</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* =============================================
+   SWEET SPOT ADMIN PANEL v1.0
+   HOW TO ADD A NEW MODULE:
+   1. Create object: {id, name, icon, init(c), getChanges()}
+   2. Push to MODULES array at bottom of script
+   3. Done - tab appears automatically!
+   ============================================= */
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ab:#16161A;--as:#1F1F26;--ap:#26262E;--ac:#2E2E38;--abr:#3A3A46;
+  --ag:#C4A265;--agl:#D4B87A;--at:#E8E4DC;--atm:#7A7680;
+  --agreen:#5CA87A;--ared:#D06060;
+}
+body{font-family:"DM Sans",sans-serif;background:var(--ab);color:var(--at);height:100vh;overflow:hidden;display:flex;flex-direction:column;font-size:14px}
+.hdr{background:var(--as);border-bottom:1px solid var(--abr);padding:0 18px;height:52px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;gap:12px}
+.logo{font-family:"Fraunces",serif;font-size:17px;color:var(--ag);letter-spacing:.04em;white-space:nowrap}
+.logo small{font-family:"DM Sans",sans-serif;font-size:11px;color:var(--atm);font-weight:400;margin-left:6px}
+.hdr-right{display:flex;gap:8px;align-items:center}
+.btn{padding:6px 14px;border-radius:7px;border:none;cursor:pointer;font-family:"DM Sans",sans-serif;font-size:12px;font-weight:600;transition:all .15s;white-space:nowrap}
+.btn-gold{background:var(--ag);color:#1A1A1E}.btn-gold:hover{background:var(--agl)}
+.btn-outline{background:transparent;color:var(--atm);border:1px solid var(--abr)}.btn-outline:hover{border-color:var(--ag);color:var(--ag)}
+.btn-ghost{background:transparent;color:var(--atm);border:none}.btn-ghost:hover{color:var(--at)}
+.btn-sm{padding:5px 10px;font-size:11px}
+.body{display:flex;flex:1;overflow:hidden}
+.sidebar{width:310px;background:var(--as);border-right:1px solid var(--abr);display:flex;flex-direction:column;flex-shrink:0}
+.tabs{display:flex;border-bottom:1px solid var(--abr);overflow-x:auto;scrollbar-width:none;flex-shrink:0}
+.tabs::-webkit-scrollbar{display:none}
+.tab{padding:10px 4px;cursor:pointer;color:var(--atm);border-bottom:2px solid transparent;transition:all .15s;flex:1;text-align:center;font-size:18px}
+.tab .tlbl{font-size:9px;display:block;margin-top:2px;font-family:"DM Sans",sans-serif;white-space:nowrap}
+.tab:hover{color:var(--at)}.tab.on{color:var(--ag);border-bottom-color:var(--ag)}
+.panel{flex:1;overflow-y:auto;padding:14px;scrollbar-width:thin;scrollbar-color:var(--abr) transparent}
+.sfooter{padding:10px 14px;border-top:1px solid var(--abr);display:flex;gap:8px;flex-shrink:0}
+.sfooter .btn{flex:1}
+.slabel{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--atm);margin:14px 0 8px}
+.slabel:first-child{margin-top:0}
+.notice{background:rgba(196,162,101,.08);border:1px solid rgba(196,162,101,.2);border-radius:8px;padding:9px 12px;font-size:11px;color:var(--ag);margin-bottom:12px;line-height:1.6}
+.notice.muted{color:var(--atm);border-color:var(--abr);background:var(--ac)}
+.crow{display:flex;align-items:center;gap:9px;padding:7px 9px;background:var(--ac);border-radius:8px;margin-bottom:5px}
+.csw-wrap{position:relative;width:30px;height:30px;flex-shrink:0}
+.csw{width:30px;height:30px;border-radius:6px;border:2px solid rgba(255,255,255,.12);pointer-events:none}
+.cinput{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
+.cinfo{flex:1;min-width:0}
+.cname{font-size:12px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cvar{font-size:9px;color:var(--atm);font-family:monospace}
+.chex{background:var(--ab);border:1px solid var(--abr);color:var(--at);padding:3px 7px;border-radius:5px;width:76px;font-size:11px;font-family:monospace;text-align:center;flex-shrink:0}
+.chex:focus{outline:none;border-color:var(--ag)}
+.tgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.tcard{background:var(--ac);border:2px solid var(--abr);border-radius:10px;padding:11px;cursor:pointer;transition:all .15s}
+.tcard:hover{border-color:var(--ag)}.tcard.on{border-color:var(--ag);background:rgba(196,162,101,.1)}
+.tdots{display:flex;gap:3px;margin-bottom:7px}
+.tdot{width:13px;height:13px;border-radius:50%;border:1px solid rgba(255,255,255,.12)}
+.tname{font-size:12px;font-weight:600}.tdesc{font-size:10px;color:var(--atm);margin-top:2px}
+.srow{background:var(--ac);border-radius:8px;padding:11px;margin-bottom:7px}
+.srow-hdr{display:flex;justify-content:space-between;margin-bottom:7px}
+.slbl2{font-size:12px}.sval{font-size:11px;color:var(--ag);font-family:monospace;min-width:50px;text-align:right}
+input[type=range]{width:100%;accent-color:var(--ag);cursor:pointer}
+.pitem{background:var(--ac);border-radius:8px;padding:9px 11px;margin-bottom:5px;display:flex;align-items:flex-start;gap:9px}
+.pemoji{font-size:22px;flex-shrink:0;margin-top:2px}
+.pfields{flex:1;display:flex;flex-direction:column;gap:4px}
+.pinput{background:var(--ab);border:1px solid var(--abr);color:var(--at);padding:4px 8px;border-radius:5px;font-family:"DM Sans",sans-serif;font-size:11px;width:100%}
+.pinput:focus{outline:none;border-color:var(--ag)}
+.prow2{display:flex;align-items:center;gap:6px}
+.pprice{width:65px!important}
+.plbl{font-size:10px;color:var(--atm);white-space:nowrap}
+.pbadge{font-size:9px;padding:2px 6px;border-radius:10px;background:rgba(196,162,101,.15);color:var(--ag)}
+.preview{flex:1;display:flex;flex-direction:column;overflow:hidden}
+.ptbar{display:flex;align-items:center;gap:8px;padding:8px 12px;background:var(--ap);border-bottom:1px solid var(--abr);flex-shrink:0}
+.purl{flex:1;background:var(--ab);border:1px solid var(--abr);border-radius:6px;padding:5px 10px;color:var(--atm);font-size:11px;font-family:monospace}
+.dbtns{display:flex;gap:4px}
+.dbtn{background:transparent;border:1px solid var(--abr);color:var(--atm);padding:4px 10px;border-radius:5px;cursor:pointer;font-size:13px;transition:all .15s}
+.dbtn:hover,.dbtn.on{border-color:var(--ag);color:var(--ag)}
+.pcont{flex:1;display:flex;align-items:flex-start;justify-content:center;overflow:auto;padding:16px}
+.iwrap{background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,.6);transition:width .3s;height:calc(100vh - 134px)}
+.iwrap.desktop{width:100%;max-width:1280px}.iwrap.mobile{width:390px}.iwrap.tablet{width:768px}
+#iframe{width:100%;height:100%;border:none;display:block}
+.moverlay{position:fixed;inset:0;background:rgba(0,0,0,.75);display:none;align-items:center;justify-content:center;z-index:1000}
+.moverlay.open{display:flex}
+.modal{background:var(--ap);border:1px solid var(--abr);border-radius:14px;padding:24px;width:560px;max-width:90vw;max-height:80vh;overflow-y:auto}
+.modal h3{font-family:"Fraunces",serif;color:var(--ag);font-size:18px;margin-bottom:14px}
+.modal pre{background:var(--ab);border:1px solid var(--abr);border-radius:8px;padding:14px;font-size:11px;overflow-x:auto;white-space:pre-wrap;word-break:break-all;color:#A8D8A8;margin:10px 0}
+.mbtns{display:flex;gap:8px;margin-top:14px}.mbtns .btn{flex:1}
+.toast{position:fixed;bottom:20px;right:20px;background:var(--agreen);color:#fff;padding:9px 16px;border-radius:8px;font-size:12px;font-weight:600;opacity:0;transform:translateY(8px);transition:all .2s;z-index:2000;pointer-events:none}
+.toast.show{opacity:1;transform:translateY(0)}
+::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:var(--abr);border-radius:3px}
+select.pinput{cursor:pointer}
+code{background:var(--ac);padding:1px 5px;border-radius:4px;font-size:10px}
+</style>
+</head>
+<body>
+
+<header class="hdr">
+  <div class="logo">&#127856; Sweet Spot <small>Panel Admina v1.0</small></div>
+  <div class="hdr-right">
+    <button class="btn btn-outline btn-sm" onclick="resetAll()">&#8634; Reset</button>
+    <button class="btn btn-gold btn-sm" onclick="showExport()">&#128190; Eksportuj CSS</button>
+  </div>
+</header>
+
+<div class="body">
+  <aside class="sidebar">
+    <div class="tabs" id="tabs"></div>
+    <div class="panel" id="panel"></div>
+    <div class="sfooter">
+      <button class="btn btn-outline" onclick="showExport()">&#128190; Eksport CSS</button>
+      <button class="btn btn-gold" onclick="applyToPreview()">&#9654; Odswiez</button>
+    </div>
+  </aside>
+  <div class="preview">
+    <div class="ptbar">
+      <span style="font-size:11px;color:var(--atm)">Podglad:</span>
+      <input class="purl" id="previewUrl" value="http://localhost:8080" onchange="reloadIframe()">
+      <div class="dbtns">
+        <button class="dbtn on" onclick="setDevice(this,'desktop')" title="Desktop">&#128421;</button>
+        <button class="dbtn" onclick="setDevice(this,'tablet')" title="Tablet">&#128250;</button>
+        <button class="dbtn" onclick="setDevice(this,'mobile')" title="Mobile">&#128242;</button>
+      </div>
+      <button class="btn btn-ghost btn-sm" onclick="reloadIframe()">&#8635;</button>
+    </div>
+    <div class="pcont">
+      <div class="iwrap desktop" id="iwrap">
+        <iframe id="iframe" src="http://localhost:8080"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- EXPORT CSS MODAL -->
+<div class="moverlay" id="exportModal">
+  <div class="modal">
+    <h3>&#128190; Eksport CSS</h3>
+    <p style="font-size:12px;color:var(--atm);margin-bottom:10px">Skopiuj i wklej na poczatku <code>:root{}</code> w <code>css/style.css</code>:</p>
+    <pre id="exportCode"></pre>
+    <div class="mbtns">
+      <button class="btn btn-outline" onclick="copyExport()">&#128203; Kopiuj</button>
+      <button class="btn btn-gold" onclick="downloadCSS()">&#128229; Pobierz style.css</button>
+      <button class="btn btn-ghost" onclick="closeModal('exportModal')">Zamknij</button>
+    </div>
+  </div>
+</div>
+
+<!-- EXPORT PRODUCTS MODAL -->
+<div class="moverlay" id="productsModal">
+  <div class="modal">
+    <h3>&#129361; Eksport products.js</h3>
+    <p style="font-size:12px;color:var(--atm);margin-bottom:10px">Skopiuj i zastap <code>js/products.js</code>:</p>
+    <pre id="productsCode"></pre>
+    <div class="mbtns">
+      <button class="btn btn-outline" onclick="copyProducts()">&#128203; Kopiuj</button>
+      <button class="btn btn-gold" onclick="downloadProducts()">&#128229; Pobierz products.js</button>
+      <button class="btn btn-ghost" onclick="closeModal('productsModal')">Zamknij</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// STATE
+var state = { css: {} };
+
+// HELPERS
+function toast(msg, ok) {
+  if (ok === undefined) ok = true;
+  var t = document.getElementById('toast');
+  t.textContent = msg;
+  t.style.background = ok ? '#5CA87A' : '#D06060';
+  t.classList.add('show');
+  setTimeout(function(){ t.classList.remove('show'); }, 2200);
+}
+function injectCSS() {
+  try {
+    var doc = document.getElementById('iframe').contentDocument;
+    var root = doc.documentElement;
+    Object.keys(state.css).forEach(function(k){ root.style.setProperty(k, state.css[k]); });
+  } catch(e) {}
+}
+function applyToPreview() { injectCSS(); toast('Podglad odswiezone!'); }
+function reloadIframe() {
+  var f = document.getElementById('iframe');
+  f.src = document.getElementById('previewUrl').value;
+  f.onload = function(){ setTimeout(injectCSS, 400); };
+}
+function setDevice(btn, d) {
+  document.querySelectorAll('.dbtn').forEach(function(b){ b.classList.remove('on'); });
+  btn.classList.add('on');
+  document.getElementById('iwrap').className = 'iwrap ' + d;
+}
+function resetAll() {
+  if (!confirm('Reset wszystkich zmian?')) return;
+  state.css = {};
+  try { document.getElementById('iframe').contentDocument.documentElement.removeAttribute('style'); } catch(e){}
+  renderActive();
+  toast('Zresetowano');
+}
+function closeModal(id) { document.getElementById(id).classList.remove('open'); }
+function buildCSSOverride() {
+  var keys = Object.keys(state.css);
+  if (!keys.length) return '/* Brak zmian */';
+  return ':root {\n' + keys.map(function(k){ return '  '+k+': '+state.css[k]+';'; }).join('\n') + '\n}';
+}
+function showExport() {
+  document.getElementById('exportCode').textContent = buildCSSOverride();
+  document.getElementById('exportModal').classList.add('open');
+}
+function copyExport() { navigator.clipboard.writeText(document.getElementById('exportCode').textContent); toast('Skopiowano!'); }
+async function downloadCSS() {
+  try {
+    var r = await fetch(document.getElementById('previewUrl').value + '/css/style.css');
+    var css = await r.text();
+    css = buildCSSOverride() + '\n\n/* === ORIGINAL === */\n' + css;
+    var a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([css],{type:'text/css'})); a.download='style.css'; a.click();
+    toast('Pobieranie...');
+  } catch(e) { toast('Uruchom localhost:8080 pierwszy!', false); }
+}
+function copyProducts() { navigator.clipboard.writeText(document.getElementById('productsCode').textContent); toast('Skopiowano!'); }
+function downloadProducts() {
+  var a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([document.getElementById('productsCode').textContent],{type:'text/javascript'})); a.download='products.js'; a.click();
+  toast('Pobieranie...');
+}
+
+// ==============================================
+// MODULE 1: COLORS
+// ==============================================
+var ColorModule = {
+  id:'colors', name:'Kolory', icon:'&#127912;',
+  vars:[
+    {v:'--color-forest',      l:'Deep Forest',   d:'#2D4A37', g:'Glowne'},
+    {v:'--color-forest-deep', l:'Forest Deep',   d:'#1B3328', g:'Glowne'},
+    {v:'--color-gold',        l:'Antique Gold',  d:'#C4A265', g:'Glowne'},
+    {v:'--color-gold-light',  l:'Gold Light',    d:'#D4B87A', g:'Glowne'},
+    {v:'--color-amber',       l:'Autumn Amber',  d:'#D49055', g:'Glowne'},
+    {v:'--color-rose',        l:'Dusty Rose',    d:'#C89B9B', g:'Glowne'},
+    {v:'--color-rose-light',  l:'Rose Light',    d:'#E8C8C8', g:'Glowne'},
+    {v:'--color-dark',        l:'Charcoal Noir', d:'#1A1A1E', g:'Tla'},
+    {v:'--color-dark-warm',   l:'Dark Warm',     d:'#2A2520', g:'Tla'},
+    {v:'--color-cream',       l:'Birch White',   d:'#FAF6F0', g:'Tla'},
+    {v:'--color-cream-warm',  l:'Cream Warm',    d:'#F5EDE3', g:'Tla'},
+    {v:'--color-cream-deep',  l:'Cream Deep',    d:'#EDE4D8', g:'Tla'},
+    {v:'--color-card',        l:'Karty',         d:'#FFFFFF', g:'Tla'},
+    {v:'--color-text',        l:'Tekst glowny',  d:'#2C2825', g:'Tekst'},
+    {v:'--color-text-light',  l:'Tekst jasny',   d:'#6B6460', g:'Tekst'},
+    {v:'--color-text-muted',  l:'Tekst muted',   d:'#9B9590', g:'Tekst'},
+  ],
+  init:function(c) {
+    var g={};
+    this.vars.forEach(function(x){ if(!g[x.g]) g[x.g]=[]; g[x.g].push(x); });
+    var h='<div class="notice muted">Zmiany aplikuja sie do podgladu automatycznie.</div>';
+    Object.keys(g).forEach(function(gr){
+      h+='<div class="slabel">'+gr+'</div>';
+      g[gr].forEach(function(x){
+        var k=x.v.replace('--','').replace(/-/g,'_');
+        var cur=state.css[x.v]||x.d;
+        h+='<div class="crow">'+
+          '<div class="csw-wrap">'+
+          '<div class="csw" id="csw_'+k+'" style="background:'+cur+'"></div>'+
+          '<input type="color" class="cinput" id="ci_'+k+'" value="'+cur+'" oninput="ColorModule.update(\'' +x.v+ '\',this.value)">'+
+          '</div>'+
+          '<div class="cinfo"><div class="cname">'+x.l+'</div><div class="cvar">'+x.v+'</div></div>'+
+          '<input class="chex" id="chex_'+k+'" value="'+cur+'" oninput="ColorModule.updateHex(\''+ x.v +'\',this.value)" onclick="event.stopPropagation()">'+
+          '</div>';
+      });
+    });
+    h+='<button class="btn btn-outline btn-sm" style="width:100%;margin-top:8px" onclick="ColorModule.reset()">&#8634; Reset kolorow</button>';
+    c.innerHTML=h;
+  },
+  update:function(v,val){
+    state.css[v]=val;
+    var k=v.replace('--','').replace(/-/g,'_');
+    var sw=document.getElementById('csw_'+k); if(sw) sw.style.background=val;
+    var hx=document.getElementById('chex_'+k); if(hx) hx.value=val;
+    injectCSS();
+  },
+  updateHex:function(v,val){
+    if(!/^#[0-9a-fA-F]{6}$/.test(val)) return;
+    this.update(v,val);
+    var k=v.replace('--','').replace(/-/g,'_');
+    var ci=document.getElementById('ci_'+k); if(ci) ci.value=val;
+  },
+  reset:function(){
+    this.vars.forEach(function(x){ delete state.css[x.v]; });
+    renderActive(); injectCSS(); toast('Kolory zresetowane');
+  },
+  getChanges:function(){return {};}
+};
+
+// ==============================================
+// MODULE 2: THEMES
+// ==============================================
+var ThemeModule = {
+  id:'themes', name:'Motywy', icon:'&#11088;',
+  active:'original',
+  presets:[
+    {id:'original', name:'Lesna Polana',  desc:'Oryginalny - ciepły las',
+     dots:['#2D4A37','#C4A265','#FAF6F0','#C89B9B'],
+     vars:{'--color-forest':'#2D4A37','--color-gold':'#C4A265','--color-amber':'#D49055','--color-rose':'#C89B9B','--color-cream':'#FAF6F0','--color-dark':'#1A1A1E'}},
+    {id:'summer',   name:'Letni',         desc:'Cieplo, slonce, wakacje',
+     dots:['#2E6B45','#E8B84B','#FFFBF0','#F4A56A'],
+     vars:{'--color-forest':'#2E6B45','--color-forest-deep':'#1D5235','--color-gold':'#E8B84B','--color-amber':'#F4A56A','--color-cream':'#FFFBF0','--color-cream-warm':'#FFF3D6'}},
+    {id:'winter',   name:'Zimowy',        desc:'Srebro, granat, szron',
+     dots:['#2B3F6B','#9BB5CC','#F0F4F8','#C4A265'],
+     vars:{'--color-forest':'#2B3F6B','--color-forest-deep':'#1A2B50','--color-gold':'#9BB5CC','--color-amber':'#7A9BBB','--color-cream':'#F0F4F8','--color-rose':'#B8A8C8'}},
+    {id:'christmas',name:'Swiateczny',    desc:'Czerwien + zloto',
+     dots:['#8B1A1A','#C4A265','#FDF6EC','#D4B87A'],
+     vars:{'--color-forest':'#8B1A1A','--color-forest-deep':'#6B1010','--color-gold':'#C4A265','--color-amber':'#D4501A','--color-cream':'#FDF6EC'}},
+    {id:'easter',   name:'Wielkanocny',   desc:'Pastele, wiosna',
+     dots:['#6B8F5E','#E8C87A','#F8FBF0','#F0B8C8'],
+     vars:{'--color-forest':'#6B8F5E','--color-forest-deep':'#4F7245','--color-gold':'#E8C87A','--color-amber':'#E8A0B0','--color-rose':'#F0B8C8','--color-cream':'#F8FBF0'}},
+    {id:'valentine',name:'Walentynki',    desc:'Fuksja, roz, milosc',
+     dots:['#8B2252','#E8789A','#FFF0F5','#C4A265'],
+     vars:{'--color-forest':'#8B2252','--color-forest-deep':'#6B1540','--color-gold':'#E8789A','--color-amber':'#D45080','--color-rose':'#F0A8C0','--color-cream':'#FFF0F5'}},
+  ],
+  init:function(c){
+    var self=this;
+    var h='<div class="notice">Wybierz motyw. Mozesz go dostosowac w zakladce Kolory.</div><div class="tgrid">';
+    this.presets.forEach(function(p){
+      var on=self.active===p.id?' on':'';
+      h+='<div class="tcard'+on+'" onclick="ThemeModule.apply(\'' +p.id+ '\')">'+
+        '<div class="tdots">'+p.dots.map(function(col){ return '<div class="tdot" style="background:'+col+'"></div>'; }).join('')+'</div>'+
+        '<div class="tname">'+p.name+'</div><div class="tdesc">'+p.desc+'</div></div>';
+    });
+    h+='</div>';
+    c.innerHTML=h;
+  },
+  apply:function(id){
+    var p=this.presets.find(function(x){ return x.id===id; });
+    if(!p) return;
+    this.active=id;
+    Object.keys(p.vars).forEach(function(k){ state.css[k]=p.vars[k]; });
+    injectCSS(); renderActive(); toast('Motyw "'+p.name+'" zastosowany');
+  },
+  getChanges:function(){return {};}
+};
+
+// ==============================================
+// MODULE 3: TYPOGRAPHY
+// ==============================================
+var TypographyModule = {
+  id:'typography', name:'Typografia', icon:'&#9999;',
+  sliders:[
+    {v:'--font-size-base',         l:'Rozmiar tekstu',      min:13,max:18,step:1,def:16,u:'px'},
+    {v:'--border-radius',          l:'Zaokraglenie kart',   min:0, max:24,step:2,def:12,u:'px'},
+    {v:'--letter-spacing-display', l:'Letter-spacing nagł.', min:0, max:8, step:1,def:1, u:'px'},
+  ],
+  fonts:[
+    {l:'Display (naglowki)', v:'--font-display', opts:[
+      {l:'Fraunces (obecny)',       val:'"Fraunces", Georgia, serif'},
+      {l:'Cormorant Garamond',     val:'"Cormorant Garamond", Georgia, serif'},
+      {l:'Playfair Display',       val:'"Playfair Display", serif'},
+      {l:'Georgia (systemowy)',    val:'Georgia, serif'},
+    ]},
+    {l:'Body (tekst)', v:'--font-body', opts:[
+      {l:'DM Sans (obecny)',        val:'"DM Sans", system-ui, sans-serif'},
+      {l:'Mulish',                  val:'"Mulish", system-ui, sans-serif'},
+      {l:'Inter',                   val:'"Inter", system-ui, sans-serif'},
+      {l:'System UI',               val:'system-ui, sans-serif'},
+    ]},
+  ],
+  init:function(c){
+    var h='<div class="slabel">Rozmiary i ksztalty</div>';
+    this.sliders.forEach(function(s){
+      var k=s.v.replace('--','').replace(/-/g,'_');
+      var cur=state.css[s.v]?parseInt(state.css[s.v]):s.def;
+      h+='<div class="srow"><div class="srow-hdr"><span class="slbl2">'+s.l+'</span><span class="sval" id="sv_'+k+'">'+cur+s.u+'</span></div>'+
+        '<input type="range" min="'+s.min+'" max="'+s.max+'" step="'+s.step+'" value="'+cur+'"'+
+        ' oninput="TypographyModule.updateSlider(\'' +s.v+ '\',this.value,\'' +s.u+ '\')"'+
+        ' onchange="injectCSS()"></div>';
+    });
+    h+='<div class="slabel" style="margin-top:12px">Czcionki</div>';
+    this.fonts.forEach(function(f){
+      var cur=state.css[f.v]||'';
+      h+='<div class="srow"><div class="slbl2" style="margin-bottom:8px">'+f.l+'</div>'+
+        '<select class="pinput" onchange="TypographyModule.updateFont(\'' +f.v+ '\',this.value)">';
+      f.opts.forEach(function(o){
+        var sel=cur&&cur.includes(o.l.split('(')[0].trim())?'selected':'';
+        h+='<option value="'+o.val+'" '+sel+'>'+o.l+'</option>';
+      });
+      h+='</select></div>';
+    });
+    h+='<div class="slabel" style="margin-top:12px">Podglad</div>';
+    h+='<div class="srow"><p style="font-family:var(--font-display,Fraunces,serif);font-size:20px;margin-bottom:6px">Sweet Spot Augustow</p>'+
+      '<p style="font-size:13px;color:var(--atm)">Rzemielnicze slodkosci z pasja.</p></div>';
+    c.innerHTML=h;
+  },
+  updateSlider:function(v,val,u){
+    state.css[v]=val+u;
+    var k=v.replace('--','').replace(/-/g,'_');
+    var el=document.getElementById('sv_'+k); if(el) el.textContent=val+u;
+    injectCSS();
+  },
+  updateFont:function(v,val){ state.css[v]=val; injectCSS(); },
+  getChanges:function(){return {};}
+};
+
+// ==============================================
+// MODULE 4: PRODUCTS
+// ==============================================
+var ProductsModule = {
+  id:'products', name:'Produkty', icon:'&#129361;',
+  products:[
+    {id:1,  name:'Malinowa Chmurka',      price:18, cat:'monoporcje', e:'&#127827;', badge:'Bestseller', desc:'Delikatny mus malinowy na biszkopcie migdalowym'},
+    {id:2,  name:'Pistacjowa Rozkosz',    price:22, cat:'monoporcje', e:'&#129364;', badge:null,          desc:'Intensywny krem pistacjowy z malinowa wkladka'},
+    {id:3,  name:'Czekoladowa Pokusa',    price:20, cat:'monoporcje', e:'&#127851;', badge:null,          desc:'Ciemna czekolada 70% z solonym karmelem'},
+    {id:4,  name:'Mango Passion',         price:21, cat:'monoporcje', e:'&#129389;', badge:'Nowosc',      desc:'Egzotyczny mus mango z marakuja'},
+    {id:5,  name:'Cytrynowa Tarta',       price:19, cat:'monoporcje', e:'&#127819;', badge:null,          desc:'Klasyczny krem cytrynowy z beza wloska'},
+    {id:6,  name:'Tiramisu',              price:20, cat:'monoporcje', e:'&#9749;',   badge:null,          desc:'Klasyczne wloskie tiramisu z mascarpone'},
+    {id:10, name:'Tartaletka Owocowa',    price:16, cat:'tartaletki', e:'&#127815;', badge:null,          desc:'Kruche ciasto z kremem patisserie'},
+    {id:11, name:'Tartaletka Czekoladowa',price:17, cat:'tartaletki', e:'&#127851;', badge:null,          desc:'Ganache z ciemnej czekolady'},
+    {id:12, name:'Tartaletka Cytrynowa',  price:16, cat:'tartaletki', e:'&#127819;', badge:null,          desc:'Swiezy krem cytrynowy z beza'},
+    {id:13, name:'Tartaletka Karmelowa',  price:18, cat:'tartaletki', e:'&#129383;', badge:'Nowosc',      desc:'Solony karmel z orzechami pekan'},
+    {id:50, name:'Makaronik Mango',       price:8,  cat:'makaroniki', e:'&#129389;', badge:'Nowosc',      desc:'Mango z marakuja'},
+    {id:51, name:'Makaronik Czekolada',   price:8,  cat:'makaroniki', e:'&#127851;', badge:null,          desc:'Czekolada z pralina orzechowa'},
+    {id:52, name:'Makaronik Pistacjowy',  price:9,  cat:'makaroniki', e:'&#127798;', badge:'Bestseller',  desc:'Pasta pistacjowa z Sycylii'},
+    {id:53, name:'Makaronik Smietankowy', price:7,  cat:'makaroniki', e:'&#129293;', badge:null,          desc:'Krem waniliowy'},
+    {id:60, name:'Box Makaronikow 6szt',  price:45, cat:'makaroniki', e:'&#127873;', badge:'Mix',         desc:'Wybierz 6 smaków'},
+    {id:61, name:'Box Makaronikow 12szt', price:85, cat:'makaroniki', e:'&#127872;', badge:'Mix',         desc:'Wybierz 12 smaków'},
+    {id:30, name:'Sernik Baskijski',      price:85, cat:'ciasta',     e:'&#129390;', badge:'Hit',         desc:'Kremowy spalony sernik'},
+    {id:31, name:'Szarlotka Tatrzanska',  price:75, cat:'ciasta',     e:'&#127822;', badge:null,          desc:'Klasyczna szarlotka z gora jablek'},
+    {id:32, name:'Sernik Lotus',          price:90, cat:'ciasta',     e:'&#127850;', badge:'Nowosc',      desc:'Sernik z ciasteczkami Lotus'},
+    {id:33, name:'Drozdzowka ze Sliwkami',price:65, cat:'ciasta',     e:'&#129744;', badge:null,          desc:'Puszysty drozdzowiec'},
+    {id:34, name:'Brownie',               price:70, cat:'ciasta',     e:'&#127851;', badge:null,          desc:'Intensywnie czekoladowe'},
+    {id:40, name:'Sernik Truskawkowy',    price:24, cat:'sezonowe',   e:'&#127827;', badge:'Lato 2026',   desc:'Lekki sernik z musem truskawkowym'},
+    {id:41, name:'Pavlova Owocowa',       price:26, cat:'sezonowe',   e:'&#127856;', badge:'Lato 2026',   desc:'Beza z bita smietana i owocami'},
+    {id:42, name:'Sorbet Mango-Marakuja', price:15, cat:'sezonowe',   e:'&#127848;', badge:'Lato 2026',   desc:'Orzezwiajacy sorbet owocowy'},
+  ],
+  cats:{monoporcje:'Monoporcje', tartaletki:'Tartaletki', makaroniki:'Makaroniki', ciasta:'Ciasta', sezonowe:'Sezonowe'},
+  init:function(c){
+    var g={};
+    this.products.forEach(function(p){ if(!g[p.cat]) g[p.cat]=[]; g[p.cat].push(p); });
+    var h='<div class="notice">Edytuj nazwy i ceny. Kliknij Eksportuj aby pobrac gotowy plik.</div>';
+    var self=this;
+    Object.keys(g).forEach(function(cat){
+      h+='<div class="slabel">'+self.cats[cat]+'</div>';
+      g[cat].forEach(function(p){
+        h+='<div class="pitem"><span class="pemoji">'+p.e+'</span><div class="pfields">'+
+          '<input class="pinput" value="'+p.name+'" placeholder="Nazwa" oninput="ProductsModule.upd('+p.id+',\'name\',this.value)">'+
+          '<input class="pinput" value="'+p.desc+'" placeholder="Opis" oninput="ProductsModule.upd('+p.id+',\'desc\',this.value)">'+
+          '<div class="prow2">'+
+          '<input class="pinput pprice" type="number" value="'+p.price+'" oninput="ProductsModule.upd('+p.id+',\'price\',+this.value)">'+
+          '<span class="plbl">PLN</span>'+(p.badge?'<span class="pbadge">'+p.badge+'</span>':'')+
+          '</div></div></div>';
+      });
+    });
+    h+='<button class="btn btn-gold" style="width:100%;margin-top:10px" onclick="ProductsModule.exportJS()">&#128229; Eksportuj products.js</button>';
+    c.innerHTML=h;
+  },
+  upd:function(id,field,val){
+    var p=this.products.find(function(x){ return x.id===id; });
+    if(p) p[field]=val;
+  },
+  exportJS:function(){
+    var lines=['// ==========================================','// SWEET SPOT - Product Catalog','// ==========================================','','const PRODUCTS = ['];
+    this.products.forEach(function(p,i){
+      lines.push('    {');
+      lines.push('        id: '+p.id+',');
+      lines.push('        name: '+JSON.stringify(p.name)+',');
+      lines.push('        description: '+JSON.stringify(p.desc)+',');
+      lines.push('        price: '+p.price+',');
+      lines.push('        category: '+JSON.stringify(p.cat)+',');
+      lines.push('        badge: '+(p.badge?JSON.stringify(p.badge):'null'));
+      lines.push('    }'+(i<this.products.length-1?',':''));
+    }, this);
+    lines.push('];');
+    document.getElementById('productsCode').textContent=lines.join('\n');
+    document.getElementById('productsModal').classList.add('open');
+  },
+  getChanges:function(){return {};}
+};
+
+// ==============================================
+// MODULES REGISTRY — add new modules here!
+// ==============================================
+var MODULES = [
+  ColorModule,
+  ThemeModule,
+  TypographyModule,
+  ProductsModule,
+  // To add a module: { id:'x', name:'Nazwa', icon:'&#XXXXX;', init:function(c){...}, getChanges:function(){return {};} }
+];
+
+// NAVIGATION
+var activeModule = MODULES[0].id;
+
+function renderTabs() {
+  document.getElementById('tabs').innerHTML = MODULES.map(function(m){
+    return '<div class="tab'+(m.id===activeModule?' on':'')
+      +'" onclick="switchModule(\'' +m.id+ '\')">'+(m.icon||'')
+      +'<span class="tlbl">'+m.name+'</span></div>';
+  }).join('');
+}
+
+function renderActive() {
+  var m = MODULES.find(function(x){ return x.id===activeModule; });
+  if (m) m.init(document.getElementById('panel'));
+  renderTabs();
+}
+
+function switchModule(id) {
+  activeModule = id;
+  renderActive();
+}
+
+// INIT
+document.addEventListener('DOMContentLoaded', function(){
+  renderActive();
+  document.getElementById('iframe').onload = function(){ setTimeout(injectCSS, 400); };
+});
+</script>
+</body>
+</html>
