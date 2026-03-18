@@ -115,7 +115,7 @@ code{background:var(--ac);padding:1px 5px;border-radius:4px;font-size:10px}
   <div class="preview">
     <div class="ptbar">
       <span style="font-size:11px;color:var(--atm)">Podglad:</span>
-      <input class="purl" id="previewUrl" value="http://localhost:8080" onchange="reloadIframe()">
+      <input class="purl" id="previewUrl" value="https://mizuri0x.github.io/sweetspotaugustow" onchange="reloadIframe()">
       <div class="dbtns">
         <button class="dbtn on" onclick="setDevice(this,'desktop')" title="Desktop">&#128421;</button>
         <button class="dbtn" onclick="setDevice(this,'tablet')" title="Tablet">&#128250;</button>
@@ -125,7 +125,7 @@ code{background:var(--ac);padding:1px 5px;border-radius:4px;font-size:10px}
     </div>
     <div class="pcont">
       <div class="iwrap desktop" id="iwrap">
-        <iframe id="iframe" src="http://localhost:8080"></iframe>
+        <iframe id="iframe" src="https://mizuri0x.github.io/sweetspotaugustow"></iframe>
       </div>
     </div>
   </div>
@@ -217,7 +217,7 @@ async function downloadCSS() {
     css = buildCSSOverride() + '\n\n/* === ORIGINAL === */\n' + css;
     var a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([css],{type:'text/css'})); a.download='style.css'; a.click();
     toast('Pobieranie...');
-  } catch(e) { toast('Uruchom localhost:8080 pierwszy!', false); }
+  } catch(e) { toast('Błąd pobierania CSS', false); }
 }
 function copyProducts() { navigator.clipboard.writeText(document.getElementById('productsCode').textContent); toast('Skopiowano!'); }
 function downloadProducts() {
