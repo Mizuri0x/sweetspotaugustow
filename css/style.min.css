@@ -6,14 +6,14 @@
 /* ---------- DESIGN TOKENS ---------- */
 :root {
     /* Brand Colors */
-    --color-forest: #2D4A37;
-    --color-forest-deep: #1B3328;
-    --color-gold: #C4A265;
-    --color-gold-light: #D4B87A;
-    --color-gold-glow: rgba(196, 162, 101, 0.25);
+    --color-forest: #A0616A;
+    --color-forest-deep: #7D4A52;
+    --color-gold: #C4A07A;
+    --color-gold-light: #D4B896;
+    --color-gold-glow: rgba(196, 136, 138, 0.25);
     --color-amber: #D49055;
-    --color-rose: #C89B9B;
-    --color-rose-light: #E8C8C8;
+    --color-rose: #C4888A;
+    --color-rose-light: #E8C0C2;
 
     /* Neutrals */
     --color-dark: #1A1A1E;
@@ -35,8 +35,8 @@
     --color-card: #FFFFFF;
 
     /* Typography */
-    --font-display: 'Fraunces', 'Georgia', serif;
-    --font-body: 'DM Sans', 'Segoe UI', sans-serif;
+    --font-display: 'Cormorant Garamond', 'Georgia', serif;
+    --font-body: 'Mulish', 'Segoe UI', sans-serif;
     --font-handwritten: 'Caveat', cursive;
 
     /* Sizes */
@@ -1902,22 +1902,22 @@ footer .container {
 
 /* Category-specific gradient backgrounds for product images */
 .product-card[data-category="monoporcje"] .product-image .product-emoji {
-    background: linear-gradient(135deg, #2D4A37 0%, #1E3328 40%, #C4A265 100%);
+    background: linear-gradient(135deg, #A0616A 0%, #1E3328 40%, #C4A07A 100%);
 }
 .product-card[data-category="tartaletki"] .product-image .product-emoji {
-    background: linear-gradient(135deg, #D49055 0%, #C4A265 50%, #2D4A37 100%);
+    background: linear-gradient(135deg, #D49055 0%, #C4A07A 50%, #A0616A 100%);
 }
 .product-card[data-category="makaroniki"] .product-image .product-emoji {
-    background: linear-gradient(135deg, #C89B9B 0%, #D4B87A 50%, #E0A870 100%);
+    background: linear-gradient(135deg, #C4888A 0%, #D4B896 50%, #E0A870 100%);
 }
 .product-card[data-category="ciasta"] .product-image .product-emoji {
-    background: linear-gradient(135deg, #1E1E22 0%, #2D4A37 50%, #C4A265 100%);
+    background: linear-gradient(135deg, #1E1E22 0%, #A0616A 50%, #C4A07A 100%);
 }
 .product-card[data-category="sezonowe"] .product-image .product-emoji {
     background: linear-gradient(135deg, #3B5F4A 0%, #8AAF7E 50%, #D49055 100%);
 }
 .product-card[data-category="zestawy"] .product-image .product-emoji {
-    background: linear-gradient(135deg, #C4A265 0%, #1E1E22 60%, #C89B9B 100%);
+    background: linear-gradient(135deg, #C4A07A 0%, #1E1E22 60%, #C4888A 100%);
 }
 
 /* Enlarged emoji with glow effect */
@@ -2510,10 +2510,10 @@ html {
     transition: color 0.3s ease;
 }
 .navbar a:hover, .navbar .nav-link:hover {
-    color: var(--color-gold, #C4A265) !important;
+    color: var(--color-gold, #C4A07A) !important;
 }
 .cart-count {
-    background: var(--color-gold, #C4A265) !important;
+    background: var(--color-gold, #C4A07A) !important;
     color: #1E1E22 !important;
     font-weight: 700;
 }
@@ -2564,7 +2564,7 @@ html {
     letter-spacing: -0.02em;
 }
 .hero h1 em, .hero h1 i, .hero h1 .accent {
-    color: var(--color-gold, #C4A265) !important;
+    color: var(--color-gold, #C4A07A) !important;
     font-style: italic;
 }
 .hero p, .hero .hero-subtitle {
@@ -2575,7 +2575,7 @@ html {
 
 /* CTA Button — Gold with glow */
 .hero .btn, .hero .cta-btn, .hero a[class*="btn"] {
-    background: linear-gradient(135deg, var(--color-gold, #C4A265), var(--color-amber, #D49055)) !important;
+    background: linear-gradient(135deg, var(--color-gold, #C4A07A), var(--color-amber, #D49055)) !important;
     color: #1E1E22 !important;
     font-weight: 700;
     font-family: "Mulish", sans-serif;
@@ -2633,20 +2633,20 @@ html {
     border-radius: 50px;
     border: 1.5px solid rgba(45, 74, 55, 0.15);
     background: transparent;
-    color: var(--color-primary, #2D4A37);
+    color: var(--color-primary, #A0616A);
     cursor: pointer;
     transition: opacity 0.3s ease;
     letter-spacing: 0.02em;
 }
 .category-btn:hover, .cat-btn:hover {
-    border-color: var(--color-gold, #C4A265);
-    color: var(--color-gold, #C4A265);
+    border-color: var(--color-gold, #C4A07A);
+    color: var(--color-gold, #C4A07A);
     background: rgba(196, 162, 101, 0.06);
 }
 .category-btn.active, .cat-btn.active {
-    background: var(--color-primary, #2D4A37) !important;
+    background: var(--color-primary, #A0616A) !important;
     color: #FDFBF7 !important;
-    border-color: var(--color-primary, #2D4A37) !important;
+    border-color: var(--color-primary, #A0616A) !important;
     box-shadow: 0 2px 12px rgba(45, 74, 55, 0.2);
 }
 
@@ -2659,7 +2659,7 @@ html {
     font-family: "Cormorant Garamond", serif !important;
     font-weight: 700;
     font-size: clamp(2rem, 4vw, 3rem);
-    color: var(--color-primary, #2D4A37);
+    color: var(--color-primary, #A0616A);
     text-align: center !important;
     display: block !important;
     width: 100%;
@@ -2677,7 +2677,7 @@ html {
     transform: translateX(-50%) !important;
     width: 60px !important;
     height: 3px !important;
-    background: linear-gradient(90deg, transparent, var(--color-gold, #C4A265), transparent) !important;
+    background: linear-gradient(90deg, transparent, var(--color-gold, #C4A07A), transparent) !important;
     border-radius: 2px;
     display: block !important;
 }
@@ -2717,17 +2717,17 @@ html {
     z-index: 2;
 }
 .badge-bestseller, .badge[class*="best"] {
-    background: linear-gradient(135deg, var(--color-gold, #C4A265), var(--color-amber, #D49055)) !important;
+    background: linear-gradient(135deg, var(--color-gold, #C4A07A), var(--color-amber, #D49055)) !important;
     color: #1E1E22 !important;
 }
 .badge-new, .badge[class*="now"] {
-    background: var(--color-primary, #2D4A37) !important;
+    background: var(--color-primary, #A0616A) !important;
     color: #FDFBF7 !important;
 }
 
 /* ---------- 6. ABOUT SECTION — Dark Luxury ---------- */
 section.about, .about {
-    background: linear-gradient(170deg, #1E1E22 0%, #2a3d30 60%, #2D4A37 100%) !important;
+    background: linear-gradient(170deg, #1E1E22 0%, #2a3d30 60%, #A0616A 100%) !important;
     color: #FDFBF7 !important;
     padding: 6rem 0 !important;
     position: relative;
@@ -2767,16 +2767,16 @@ section.about, .about {
 }
 
 .about h2, .about .section-title {
-    color: var(--color-gold, #C4A265) !important;
+    color: var(--color-gold, #C4A07A) !important;
     text-align: left !important;
 }
 .about h2::after, .about .section-title::after {
     left: 0 !important;
     transform: none !important;
-    background: linear-gradient(90deg, var(--color-gold, #C4A265), transparent) !important;
+    background: linear-gradient(90deg, var(--color-gold, #C4A07A), transparent) !important;
 }
 .about .about-handwritten, .about .kicker {
-    color: var(--color-gold, #C4A265) !important;
+    color: var(--color-gold, #C4A07A) !important;
 }
 .about p, .about .about-text p {
     color: rgba(253, 251, 247, 0.82) !important;
@@ -2828,7 +2828,7 @@ section.about, .about {
     padding: 5rem 0;
 }
 .contact h2 {
-    color: var(--color-primary, #2D4A37) !important;
+    color: var(--color-primary, #A0616A) !important;
 }
 .contact-card, .contact-info, .contact .info-card {
     background: #FDFBF7;
@@ -2838,14 +2838,14 @@ section.about, .about {
     border: 1px solid rgba(45, 74, 55, 0.06);
 }
 .hours-card, .contact .hours {
-    background: var(--color-primary, #2D4A37) !important;
+    background: var(--color-primary, #A0616A) !important;
     color: #FDFBF7 !important;
     border-radius: 16px;
     padding: 2rem;
     box-shadow: 0 8px 30px rgba(45, 74, 55, 0.2);
 }
 .hours-card h3, .contact .hours h3 {
-    color: var(--color-gold, #C4A265) !important;
+    color: var(--color-gold, #C4A07A) !important;
     font-family: "Cormorant Garamond", serif;
 }
 .hours-card td, .hours-card th,
@@ -2866,7 +2866,7 @@ footer a {
     transition: color 0.3s ease;
 }
 footer a:hover {
-    color: var(--color-gold, #C4A265) !important;
+    color: var(--color-gold, #C4A07A) !important;
 }
 footer .logo, footer h3, footer h4 {
     color: #FDFBF7 !important;
@@ -3003,13 +3003,13 @@ footer .logo, footer h3, footer h4 {
 }
 .modal-close:hover {
     background: rgba(196, 162, 101, 0.2);
-    color: #C4A265;
+    color: #C4A07A;
     transform: rotate(90deg);
 }
 .modal-title {
     font-family: 'Cormorant Garamond', serif;
     font-size: 2rem;
-    color: #C4A265;
+    color: #C4A07A;
     margin-bottom: 0.5rem;
     text-align: center;
 }
@@ -3084,7 +3084,7 @@ footer .logo, footer h3, footer h4 {
 .flavor-btn {
     background: transparent;
     border: none;
-    color: #C4A265;
+    color: #C4A07A;
     width: 28px;
     height: 28px;
     border-radius: 50%;
@@ -3132,7 +3132,7 @@ footer .logo, footer h3, footer h4 {
     border-radius: 16px;
     font-size: 1.1rem;
     font-weight: 600;
-    background: linear-gradient(135deg, #C4A265 0%, #D49055 100%);
+    background: linear-gradient(135deg, #C4A07A 0%, #D49055 100%);
     color: #1E1E22;
     border: none;
     cursor: pointer;
