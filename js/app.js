@@ -26,7 +26,7 @@ const CONFIG = {
     },
     // Business info
     business: {
-        name: "Sweet Spot Augustów",
+        name: "Sztuka Deseru Augustów",
         phone: "+48 XXX XXX XXX",
         instagram: "@sweetspotaugustow"
     }
@@ -311,5 +311,5 @@ document.addEventListener("click", (e) => {
     }
 });
 
-console.log("🧁 Sweet Spot Augustów - Website loaded!");
+console.log("🧁 Sztuka Deseru Augustów - Website loaded!");
 console.log("📦 Configure notifications in CONFIG object");

@@ -1,4 +1,4 @@
-// Sweet Spot Augustów — Scroll Reveal Animations
+// Sztuka Deseru Augustów — Scroll Reveal Animations
 // Lightweight IntersectionObserver-based reveal system
 
 document.addEventListener('DOMContentLoaded', () => {
